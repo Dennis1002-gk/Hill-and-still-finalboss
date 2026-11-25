@@ -1,0 +1,301 @@
+﻿ID,Title,Artist,Country,Genre,Subgenre,BPM,Energy_1_5,Valence_0_1,Mood,Goal,Source,Confidence
+S001,Nàng Thơ,Hoàng Dũng,Vietnam,Pop,Indie pop ballad,123,3,NA,SAD,RELAX,SongBPM;Editorial,HIGH
+S002,Bước Qua Mùa Cô Đơn,Vũ.,Vietnam,Pop,Indie folk-pop,85,2,NA,SAD,RELAX,Editorial,MEDIUM
+S003,Có Chàng Trai Viết Lên Cây,Phan Mạnh Quỳnh,Vietnam,Pop,Acoustic pop ballad,76,2,NA,SAD,FOCUS,Editorial,MEDIUM
+S004,Ước Gì,Mỹ Tâm,Vietnam,Pop,Pop ballad,76,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S005,Sau Tất Cả,ERIK,Vietnam,Pop,Contemporary pop ballad,90,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S006,Em Gái Mưa,Hương Tràm,Vietnam,Pop,Pop ballad,72,2,NA,SAD,RELAX,Editorial,MEDIUM
+S007,Hơn Cả Yêu,Đức Phúc,Vietnam,Pop,Romantic pop ballad,100,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S008,Tháng Tư Là Lời Nói Dối Của Em,Hà Anh Tuấn,Vietnam,Pop,Acoustic pop ballad,80,3,NA,SAD,FOCUS,Editorial,MEDIUM
+S009,Chạm Đáy Nỗi Đau,ERIK,Vietnam,Pop,Contemporary pop ballad,130,4,NA,NEUTRAL,UPLIFT,Editorial,MEDIUM
+S010,Anh Cứ Đi Đi,Hari Won,Vietnam,Pop,Pop ballad,80,2,NA,SAD,RELAX,Editorial,MEDIUM
+S011,Một Bước Yêu Vạn Dặm Đau,Mr. Siro,Vietnam,Pop,Piano pop ballad,72,2,NA,SAD,FOCUS,Editorial,MEDIUM
+S012,Đừng Ai Nhắc Về Anh Ấy,Trà My Idol,Vietnam,Pop,Pop ballad,90,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S013,Có Em,Madihu ft. Low G,Vietnam,Pop,Indie pop,100,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S014,Waiting For You,MONO,Vietnam,Pop,Dance-pop,120,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S015,Lạ Lùng,Vũ.,Vietnam,Pop,Indie pop,95,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S016,Perfect,Ed Sheeran,International,Pop,Acoustic pop ballad,95,2,NA,UPLIFTING,RELAX,Editorial,MEDIUM
+S017,Someone Like You,Adele,International,Pop,Soul piano ballad,68,1,NA,SAD,RELAX,Editorial,MEDIUM
+S018,Đưa Nhau Đi Trốn,Đen ft. Linh Cáo,Vietnam,Hip-Hop,"Conscious hip-hop, melodic rap",90,2,NA,CALM,FOCUS,Editorial,MEDIUM
+S019,Trốn Tìm,Đen ft. MTV,Vietnam,Hip-Hop,"Melodic rap, pop-rap",90,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S020,Mang Tiền Về Cho Mẹ,Đen ft. Nguyên Thảo,Vietnam,Hip-Hop,Conscious rap,100,3,NA,NEUTRAL,UPLIFT,Editorial,MEDIUM
+S021,Lối Nhỏ,Đen,Vietnam,Hip-Hop,"Lo-fi hip-hop, melodic rap",85,2,NA,CALM,FOCUS,Editorial,MEDIUM
+S022,Hai Triệu Năm,Đen ft. Biên,Vietnam,Hip-Hop,Alternative hip-hop,90,3,NA,INTENSE,FOCUS,Editorial,MEDIUM
+S023,Bài Này Chill Phết,Đen ft. MIN,Vietnam,Hip-Hop,"Chill hip-hop, pop-rap",95,2,NA,UPLIFTING,RELAX,Editorial,MEDIUM
+S024,Đi Về Nhà,Đen ft. JustaTee,Vietnam,Hip-Hop,Pop-rap,110,4,NA,UPLIFTING,RELEASE,Editorial,MEDIUM
+S025,Thiên Đàng,Wowy ft. JoliPoli,Vietnam,Hip-Hop,Pop-rap,100,3,NA,CALM,FOCUS,Editorial,MEDIUM
+S026,They Said,Suboi,Vietnam,Hip-Hop,Alternative hip-hop,95,3,NA,CALM,FOCUS,Editorial,MEDIUM
+S027,Lose Yourself,Eminem,International,Hip-Hop,Hardcore hip-hop,171,5,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S028,The Real Slim Shady,Eminem,International,Hip-Hop,Comedy hip-hop,104,4,NA,NEUTRAL,RELEASE,Editorial,MEDIUM
+S029,N.Y. State of Mind,Nas,International,Hip-Hop,East Coast hip-hop,84,4,NA,INTENSE,FOCUS,Editorial,MEDIUM
+S030,Alright,Kendrick Lamar,International,Hip-Hop,Conscious hip-hop,110,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S031,HUMBLE.,Kendrick Lamar,International,Hip-Hop,"Trap, West Coast hip-hop",150,5,NA,UPLIFTING,RELEASE,Editorial,MEDIUM
+S032,Sicko Mode,Travis Scott,International,Hip-Hop,"Trap, progressive hip-hop",150,5,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S033,See You Again,Wiz Khalifa ft. Charlie Puth,International,Hip-Hop,"Pop-rap, hip-hop ballad",80,3,NA,CALM,RELAX,Editorial,MEDIUM
+S034,Tìm Lại,Microwave,Vietnam,Rock,Alternative rock,120,3,NA,NEUTRAL,RELEASE,Editorial,MEDIUM
+S035,Bông Hồng Thủy Tinh,Bức Tường,Vietnam,Rock,Vietnamese rock ballad,100,3,NA,SAD,FOCUS,Editorial,MEDIUM
+S036,Đường Đến Ngày Vinh Quang,Bức Tường,Vietnam,Rock,Rock anthem,120,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S037,Người Đàn Bà Hóa Đá,Bức Tường,Vietnam,Rock,Alternative rock,110,3,NA,INTENSE,FOCUS,Editorial,MEDIUM
+S038,Cơn Mưa Ngang Qua,Sơn Tùng M-TP,Vietnam,Rock,Pop-rock,130,3,NA,SAD,RELAX,Editorial,MEDIUM
+S039,Chờ Người Nơi Ấy,Ưng Hoàng Phúc,Vietnam,Rock,Pop-rock ballad,100,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S040,Smells Like Teen Spirit,Nirvana,International,Rock,"Grunge, alternative rock",117,5,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S041,Boulevard of Broken Dreams,Green Day,International,Rock,Alternative rock,167,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S042,Seven Nation Army,The White Stripes,International,Rock,Garage rock,124,4,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S043,Do I Wanna Know?,Arctic Monkeys,International,Rock,"Indie rock, blues rock",85,3,NA,CALM,FOCUS,Editorial,MEDIUM
+S044,Yellow,Coldplay,International,Rock,Alternative rock,88,2,NA,CALM,RELAX,Editorial,MEDIUM
+S045,Viva La Vida,Coldplay,International,Rock,Baroque pop-rock,138,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S046,Bring Me to Life,Evanescence,International,Rock,"Alternative metal, gothic rock",95,5,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S047,Numb,Linkin Park,International,Rock,"Alternative rock, nu metal",110,5,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S048,Californication,RHCP,International,Rock,Alternative rock,96,3,NA,CALM,FOCUS,Editorial,MEDIUM
+S049,Use Somebody,Kings of Leon,International,Rock,Alternative rock,137,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S050,Believer,Imagine Dragons,International,Rock,"Pop-rock, alternative rock",125,5,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S051,The New World,Hoaprox,Vietnam,Electronic,"Future bass, electronic dance",128,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S052,I Can't Find You,K-ICM,Vietnam,Electronic,Melodic electronic,100,3,NA,CALM,RELAX,Editorial,MEDIUM
+S053,Túy Âm,Xesi; Masew; Nhật Nguyễn,Vietnam,Electronic,"Vietnamese electronic, future bass",140,2,NA,INTENSE,RELAX,Editorial,MEDIUM
+S054,Make Me Move,Culture Code ft. Karra,International,Electronic,Future bass,140,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S055,Faded,Alan Walker,International,Electronic,"Electro house, dance",90,3,NA,SAD,RELAX,Editorial,MEDIUM
+S056,Alone,Alan Walker,International,Electronic,Electro house,100,2,NA,SAD,RELAX,Editorial,MEDIUM
+S057,Unity,TheFatRat,International,Electronic,"Electro house, electronic",128,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S058,Monody,TheFatRat ft. Laura Brehm,International,Electronic,"Electro house, melodic electronic",120,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S059,Cradles,Sub Urban,International,Electronic,"Dark pop, electronic",120,3,NA,SAD,FOCUS,Editorial,MEDIUM
+S060,Strobe,deadmau5,International,Electronic,Progressive house,128,4,NA,CALM,FOCUS,Editorial,MEDIUM
+S061,Levels,Avicii,International,Electronic,"Progressive house, EDM",126,5,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S062,Wake Me Up,Avicii,International,Electronic,"Folk house, dance",124,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S063,Midnight City,M83,International,Electronic,"Synth-pop, indietronica",105,3,NA,CALM,RELAX,Editorial,MEDIUM
+S064,Titanium,David Guetta ft. Sia,International,Electronic,"Electro house, dance-pop",126,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S065,Summer,Calvin Harris,International,Electronic,"Dance-pop, progressive house",128,5,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S066,Animals,Martin Garrix,International,Electronic,Big room house,128,5,NA,UPLIFTING,RELEASE,Editorial,MEDIUM
+S067,Rather Be,Clean Bandit ft. Jess Glynne,International,Electronic,"Electronic pop, dance-pop",121,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S068,Kiss the Rain,Yiruma,International,Classical,Contemporary piano,70,2,NA,CALM,RELAX,Editorial,MEDIUM
+S069,River Flows in You,Yiruma,International,Classical,Contemporary piano,72,3,NA,CALM,RELAX,Editorial,MEDIUM
+S070,Nuvole Bianche,Ludovico Einaudi,International,Classical,Minimalist piano,66,3,NA,CALM,FOCUS,Editorial,MEDIUM
+S071,Experience,Ludovico Einaudi,International,Classical,"Neoclassical, orchestral",80,4,NA,UPLIFTING,FOCUS,Editorial,MEDIUM
+S072,Una Mattina,Ludovico Einaudi,International,Classical,Minimalist piano,80,2,NA,CALM,RELAX,Editorial,MEDIUM
+S073,Comptine d'un autre été: L'après-midi,Yann Tiersen,International,Classical,Contemporary piano,80,2,NA,SAD,FOCUS,Editorial,MEDIUM
+S074,Clair de Lune,Claude Debussy,International,Classical,Impressionist classical piano,68,1,NA,CALM,FOCUS,Editorial,MEDIUM
+S075,Gymnopédie No. 1,Erik Satie,International,Classical,Minimalist classical piano,52,1,NA,CALM,FOCUS,Editorial,MEDIUM
+S076,"Nocturne in E-flat Major, Op. 9 No. 2",Frédéric Chopin,International,Classical,Romantic classical piano,70,2,NA,CALM,FOCUS,Editorial,MEDIUM
+S077,Moonlight Sonata: I. Adagio sostenuto,Ludwig van Beethoven,International,Classical,Classical piano sonata,80,1,NA,CALM,FOCUS,Editorial,MEDIUM
+S078,Canon in D,Johann Pachelbel,International,Classical,Baroque chamber music,60,2,NA,CALM,FOCUS,Editorial,MEDIUM
+S079,Air on the G String,J.S. Bach,International,Classical,Baroque orchestral,110,1,NA,CALM,FOCUS,Editorial,MEDIUM
+S080,"Concerto No. 1 in E Major, BWV 1052: I. Allegro",J.S. Bach,International,Classical,Baroque concerto,100,4,NA,UPLIFTING,FOCUS,Editorial,MEDIUM
+S081,Merry-Go-Round of Life,Joe Hisaishi,International,Classical,"Film score, orchestral",120,4,NA,UPLIFTING,RELAX,Editorial,MEDIUM
+S082,One Summer's Day,Joe Hisaishi,International,Classical,"Film score, piano",120,3,NA,CALM,RELAX,Editorial,MEDIUM
+S083,Summer,Joe Hisaishi,International,Classical,"Film score, piano",100,4,NA,CALM,RELAX,Editorial,MEDIUM
+S084,1/1,Brian Eno,International,Ambient,"Ambient, generative music",80,2,NA,CALM,FOCUS,Editorial,MEDIUM
+S085,An Ending (Ascent),Brian Eno,International,Ambient,"Ambient, atmospheric",60,1,NA,CALM,RELAX,Editorial,MEDIUM
+S086,Weightless,Marconi Union,International,Ambient,"Ambient, atmospheric",60,1,NA,CALM,RELAX,Editorial,MEDIUM
+S087,A Walk,Tycho,International,Ambient,"Ambient, downtempo",90,3,NA,CALM,RELAX,Editorial,MEDIUM
+S088,Rhubarb,Aphex Twin,International,Ambient,"Ambient, electronic",90,2,NA,CALM,FOCUS,Editorial,MEDIUM
+S089,First Breath After Coma,Explosions in the Sky,International,Rock,"Post-rock, cinematic ambient",130,4,NA,INTENSE,UPLIFT,Editorial,MEDIUM
+S090,Says,Nils Frahm,International,Ambient,"Minimal electronic, ambient",120,2,NA,CALM,FOCUS,Editorial,MEDIUM
+S091,We Move Lightly,Dustin O'Halloran,International,Ambient,Ambient piano,80,1,NA,CALM,FOCUS,Editorial,MEDIUM
+S092,Near Light,Ólafur Arnalds,International,Ambient,Neoclassical ambient,90,3,NA,CALM,FOCUS,Editorial,MEDIUM
+S093,Saman,Ólafur Arnalds,International,Ambient,Ambient piano,80,1,NA,CALM,FOCUS,Editorial,MEDIUM
+S094,Ambre,Nils Frahm,International,Ambient,Minimalist piano ambient,90,1,NA,CALM,FOCUS,Editorial,MEDIUM
+S095,Open Eye Signal,Jon Hopkins,International,Ambient,"Ambient techno, electronica",120,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S096,Avril 14th,Aphex Twin,International,Ambient,"Ambient piano, electronic",125,2,NA,CALM,FOCUS,Editorial,MEDIUM
+S097,Weird Fishes/Arpeggi,Radiohead,International,Rock,"Art rock, atmospheric",120,4,NA,CALM,FOCUS,Editorial,MEDIUM
+S098,Your Hand in Mine,Explosions in the Sky,International,Rock,"Post-rock, instrumental ambient",120,4,NA,INTENSE,UPLIFT,Editorial,MEDIUM
+S099,Dayvan Cowboy,Boards of Canada,International,Ambient,"Downtempo, ambient electronica",90,3,NA,CALM,RELAX,Editorial,MEDIUM
+S100,"We Played Some Open Chords and Rejoiced, for the Earth Had Circled the Sun Yet Another Year",Godspeed You! Black Emperor,International,Rock,"Post-rock, drone ambient",100,4,NA,INTENSE,FOCUS,Editorial,MEDIUM
+S101,Lạc Trôi,Sơn Tùng M-TP,Vietnam,Pop,V-Pop,120,4,NA,SAD,RELAX,Editorial,MEDIUM
+S102,Hồng Nhan,Jack,Vietnam,Pop,V-Pop,130,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S103,Bông Hoa Đẹp Nhất,Quân A.P,Vietnam,Pop,Pop ballad,90,3,NA,CALM,RELAX,Editorial,MEDIUM
+S104,Đừng Hỏi Em,Mỹ Tâm,Vietnam,Pop,Pop ballad,75,2,NA,SAD,RELAX,Editorial,MEDIUM
+S105,Yêu Đơn Phương,OnlyC,Vietnam,Pop,Pop,100,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S106,Nơi Này Có Anh,Sơn Tùng M-TP,Vietnam,Pop,Electropop,100,3,NA,CALM,RELAX,Editorial,MEDIUM
+S107,Buồn Của Anh,Đạt G ft. K-ICM & Masew,Vietnam,Hip-Hop,Rap ballad,90,2,NA,SAD,RELAX,Editorial,MEDIUM
+S108,Nắm Lấy Tay Anh,Tuấn Hưng,Vietnam,Pop,Pop ballad,100,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S109,Vết Mưa,Hồng Nhung,Vietnam,Pop,Ballad,75,2,NA,SAD,RELAX,Editorial,MEDIUM
+S110,Cho Em Gần Anh Thêm Chút Nữa,Hồ Ngọc Hà,Vietnam,Pop,Dance-pop,120,3,NA,CALM,RELAX,Editorial,MEDIUM
+S111,Em Đã Thấy Anh Cô Đơn,Hương Tràm,Vietnam,Pop,Ballad,80,2,NA,SAD,RELAX,Editorial,MEDIUM
+S112,Một Đêm Say,ERIK,Vietnam,Pop,Ballad,100,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S113,Nụ Cười Người Ấy,John Kim,Vietnam,Pop,Ballad,90,2,NA,CALM,RELAX,Editorial,LOW
+S114,Cô Đơn Không Muốn Về Nhà,K-ICM ft. Ailee,Vietnam,Hip-Hop,Rap ballad,100,3,NA,SAD,RELAX,Editorial,LOW
+S115,Tháng Năm,Bùi Anh Tuấn,Vietnam,Pop,Ballad,80,2,NA,SAD,RELAX,Editorial,MEDIUM
+S116,Đừng Như Thói Quen,JayKii & Sara Lưu,Vietnam,Pop,Ballad,100,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S117,Mặt Trời Của Em,Phương Ly,Vietnam,Pop,Pop,100,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S118,Anh Ơi Ở Lại,Chi Pu,Vietnam,Pop,Dance-pop,120,3,NA,NEUTRAL,UPLIFT,Editorial,MEDIUM
+S119,Không Thể Cùng Nhau Suốt Kiếp,Hòa Minzy,Vietnam,Pop,Ballad,80,2,NA,SAD,RELAX,Editorial,MEDIUM
+S120,Anh Nhà Ở Đâu Thế,Amee,Vietnam,Pop,Pop,100,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S121,Ngày Chưa Giông Bão,Bùi Lan Hương,Vietnam,Pop,Pop,100,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S122,Cuộc Gọi Cuối,Tuấn Hưng,Vietnam,Pop,Pop,90,3,NA,NEUTRAL,RELAX,Editorial,LOW
+S123,Giấc Mơ Tuyết Trắng,Thủy Tiên,Vietnam,Pop,Pop,90,3,NA,CALM,FOCUS,Editorial,MEDIUM
+S124,Anh Rồi Sẽ Khác,Hà Anh Tuấn,Vietnam,Pop,Pop ballad,100,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S125,Hoang Mang,Trung Quân Idol,Vietnam,Pop,Ballad,80,2,NA,SAD,RELAX,Editorial,MEDIUM
+S126,Hẹn Yêu,MONO,Vietnam,Pop,Ballad,100,2,NA,SAD,RELAX,Editorial,LOW
+S127,Sầu Tím Thiệp Hồng,Dương Triệu Vũ,Vietnam,Pop,Ballad,90,2,NA,SAD,RELAX,Editorial,LOW
+S128,Người Lạ Thoáng Qua,Đinh Tùng Huy,Vietnam,Hip-Hop,Rap,100,4,NA,NEUTRAL,FOCUS,Editorial,MEDIUM
+S129,Xin Đừng Ra Đi,Soobin Hoàng Sơn,Vietnam,Pop,Ballad,100,2,NA,SAD,RELAX,Editorial,MEDIUM
+S130,Hạ Còn Vương Nắng,Hòa Minzy,Vietnam,Pop,Pop,120,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S131,Thật Bất Ngờ,Trúc Nhân,Vietnam,Pop,Ballad,100,2,NA,SAD,RELAX,Editorial,MEDIUM
+S132,Có Khi,Nguyễn Đình Vũ,Vietnam,Pop,Ballad,100,2,NA,SAD,RELAX,Editorial,MEDIUM
+S133,Nắm Bàn Tay Anh,Noo Phước Thịnh,Vietnam,Pop,Ballad,100,2,NA,CALM,RELAX,Editorial,LOW
+S134,Yêu Một Người Vô Tâm,Bảo Anh,Vietnam,Pop,Pop,120,3,NA,NEUTRAL,FOCUS,Editorial,MEDIUM
+S135,Ai Mang Cô Đơn Đi,K-ICM & APJ,Vietnam,Electronic,Dance-pop,120,3,NA,CALM,RELAX,Editorial,MEDIUM
+S136,Hơi Ấm Mùa Đông,Tăng Phúc ft. Quang Đăng,Vietnam,Pop,Ballad,120,2,NA,CALM,RELAX,Editorial,LOW
+S137,Chạm Khẽ Tim Anh Một Chút Thôi,Noo Phước Thịnh,Vietnam,Pop,Ballad,100,2,NA,SAD,RELAX,Editorial,MEDIUM
+S138,Chạy Ngay Đi,Sơn Tùng M-TP,Vietnam,Pop,Pop,120,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S139,Cause I Love You,Noo Phước Thịnh,Vietnam,Pop,Ballad,120,2,NA,SAD,RELAX,Editorial,MEDIUM
+S140,Cầu Hôn,Văn Mai Hương,Vietnam,Pop,Ballad,100,2,NA,SAD,RELAX,Editorial,MEDIUM
+S141,Baby Baby,MONSTAR,Vietnam,Pop,Pop,100,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S142,Tết Đong Đầy,"Khoa Vũ, Kay Trần",Vietnam,Pop,Ballad,100,2,NA,SAD,RELAX,Editorial,MEDIUM
+S143,Vì Yêu Cứ Đâm Đầu,MIN,Vietnam,Pop,Pop,100,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S144,Tạm Biệt Nhé,Lynk Lee & Phúc Bằng,Vietnam,Pop,Ballad,100,2,NA,SAD,RELAX,Editorial,MEDIUM
+S145,Chiếc Khăn Gió Ấm,Khánh Phương,Vietnam,Pop,Ballad,120,2,NA,SAD,RELAX,Editorial,MEDIUM
+S146,Yêu,MIN,Vietnam,Pop,Pop,100,3,NA,UPLIFTING,FOCUS,Editorial,MEDIUM
+S147,Người Lạ Ơi,Karik & Orange,Vietnam,Pop,Pop,100,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S148,Ánh Nắng Của Anh,Đức Phúc,Vietnam,Pop,Pop,100,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S149,Bùa Yêu,Bích Phương,Vietnam,Pop,Pop,100,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S150,HongKong1,Nguyễn Trọng Tài & San Ji,Vietnam,Pop,Indie folk,100,2,NA,CALM,RELAX,Editorial,MEDIUM
+S151,Shape of You,Ed Sheeran,International,Pop,Pop,96,3,NA,UPLIFTING,FOCUS,Editorial,MEDIUM
+S152,Hello,Adele,International,Pop,Ballad,79,2,NA,SAD,RELAX,Editorial,MEDIUM
+S153,Bad Guy,Billie Eilish,International,Pop,Alt pop,135,4,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S154,Counting Stars,OneRepublic,International,Pop,Pop rock,122,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S155,Firework,Katy Perry,International,Pop,Pop,124,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S156,Roar,Katy Perry,International,Pop,Pop,90,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S157,Rolling in the Deep,Adele,International,R&B/Soul,Soul,105,4,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S158,Can't Stop the Feeling,Justin Timberlake,International,Pop,Dance-pop,113,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S159,Blinding Lights,The Weeknd,International,Pop,Synthpop,171,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S160,Uptown Funk,Mark Ronson ft. Bruno Mars,International,R&B/Soul,Funk-pop,115,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S161,Say You Won't Let Go,James Arthur,International,Pop,Ballad,102,2,NA,CALM,RELAX,Editorial,MEDIUM
+S162,Just the Way You Are,Bruno Mars,International,Pop,Soul ballad,109,2,NA,CALM,RELAX,Editorial,MEDIUM
+S163,Let Her Go,Passenger,International,Pop,Ballad,75,2,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S164,Demons,Imagine Dragons,International,Rock,Alt rock,90,4,NA,NEUTRAL,RELEASE,Editorial,MEDIUM
+S165,Stressed Out,Twenty One Pilots,International,Rock,Alt rock,85,3,NA,CALM,FOCUS,Editorial,MEDIUM
+S166,Sugar,Maroon 5,International,Pop,Pop rock,120,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S167,Memories,Maroon 5,International,Pop,Pop ballad,91,2,NA,CALM,FOCUS,Editorial,MEDIUM
+S168,Stay,Zedd ft. Alessia Cara,International,Electronic,Dance-pop,128,3,NA,NEUTRAL,UPLIFT,Editorial,MEDIUM
+S169,Circles,Post Malone,International,Pop,Pop,120,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S170,Sunflower,Post Malone ft. Swae Lee,International,Hip-Hop,Pop-rap,90,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S171,Love Yourself,Justin Bieber,International,Pop,Ballad,100,2,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S172,Bad Blood,Taylor Swift,International,Pop,Pop,120,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S173,Blank Space,Taylor Swift,International,Pop,Pop,92,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S174,Royals,Lorde,International,Pop,Alternative pop,85,3,NA,NEUTRAL,FOCUS,Editorial,MEDIUM
+S175,Crazy in Love,Beyoncé ft. Jay-Z,International,R&B/Soul,Funk-pop,99,4,NA,UPLIFTING,RELAX,Editorial,MEDIUM
+S176,Shallow,Lady Gaga & Bradley Cooper,International,Pop,Ballad,96,2,NA,SAD,RELAX,Editorial,MEDIUM
+S177,Old Town Road,Lil Nas X ft. Billy Ray Cyrus,International,Country,Country rap,110,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S178,All of Me,John Legend,International,R&B/Soul,Ballad,120,2,NA,CALM,RELAX,Editorial,MEDIUM
+S179,Havana,Camila Cabello,International,Pop,Latin pop,105,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S180,Closer,The Chainsmokers ft. Halsey,International,Electronic,Dance-pop,95,3,NA,NEUTRAL,UPLIFT,Editorial,MEDIUM
+S181,Stan,Eminem ft. Dido,International,Hip-Hop,Hip-hop ballad,84,2,NA,INTENSE,RELAX,Editorial,MEDIUM
+S182,Not Afraid,Eminem,International,Hip-Hop,Hip-hop,86,4,NA,NEUTRAL,UPLIFT,Editorial,MEDIUM
+S183,Rap God,Eminem,International,Hip-Hop,Hip-hop,145,5,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S184,DNA.,Kendrick Lamar,International,Hip-Hop,Trap rap,140,5,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S185,Love.,Kendrick Lamar,International,Hip-Hop,Jazz rap,100,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S186,God's Plan,Drake,International,Hip-Hop,Trap rap,100,3,NA,NEUTRAL,UPLIFT,Editorial,MEDIUM
+S187,Hotline Bling,Drake,International,Hip-Hop,R&B rap,120,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S188,In My Feelings,Drake,International,Hip-Hop,Trap rap,120,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S189,Bad and Boujee,Migos,International,Hip-Hop,Trap rap,140,5,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S190,Mask Off,Future,International,Hip-Hop,Trap rap,110,4,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S191,The Box,Roddy Ricch,International,Hip-Hop,Trap rap,140,4,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S192,Rockstar,Post Malone ft. 21 Savage,International,Hip-Hop,Trap rap,130,4,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S193,Juice,Lizzo,International,R&B/Soul,Funk,130,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S194,Stand by Me,Ben E. King,International,R&B/Soul,Soul,140,2,NA,CALM,RELAX,Editorial,MEDIUM
+S195,Fly Me to the Moon,Frank Sinatra,International,Jazz,Jazz pop,100,2,NA,CALM,RELAX,Editorial,MEDIUM
+S196,Ain't No Sunshine,Bill Withers,International,R&B/Soul,Soul,120,2,NA,SAD,RELAX,Editorial,MEDIUM
+S197,Let It Be,The Beatles,International,Rock,Rock ballad,100,3,NA,CALM,RELAX,Editorial,MEDIUM
+S198,Imagine,John Lennon,International,Rock,Soft rock,90,2,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S199,Hotel California,Eagles,International,Rock,Classic rock,110,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S200,Bohemian Rhapsody,Queen,International,Rock,Progressive rock,95,5,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S201,Từ Ngày Em Đến,Da LAB,Vietnam,Pop,Indie pop,100,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S202,Thanh Xuân,Da LAB,Vietnam,Pop,Pop ballad,100,3,NA,CALM,RELAX,Editorial,MEDIUM
+S203,Gác Lại Âu Lo,Da LAB ft. Miu Lê,Vietnam,Pop,Pop,110,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S204,Thức Giấc,Da LAB,Vietnam,Pop,Indie pop,100,3,NA,SAD,RELEASE,Editorial,MEDIUM
+S205,Nước Mắt Em Lau Bằng Tình Yêu Mới,Da LAB ft. Tóc Tiên,Vietnam,Pop,Pop,90,4,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S206,Cứ Chill Thôi,"Chillies, Suni Hạ Linh & Rhymastic",Vietnam,Pop,Chill pop,75,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S207,Mascara,Chillies,Vietnam,Rock,Indie rock,90,3,NA,CALM,RELAX,Editorial,MEDIUM
+S208,Vùng Ký Ức,Chillies,Vietnam,Rock,Indie rock,80,4,NA,SAD,RELEASE,Editorial,MEDIUM
+S209,Nếu Ngày Mai Không Đến,Chillies,Vietnam,Rock,Indie rock,90,3,NA,SAD,RELAX,Editorial,MEDIUM
+S210,Sau Lời Từ Khước,Phan Mạnh Quỳnh,Vietnam,Pop,Pop ballad,120,2,NA,SAD,RELEASE,Editorial,MEDIUM
+S211,Từ Đó,Phan Mạnh Quỳnh,Vietnam,Pop,Pop ballad,120,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S212,Khi Người Mình Yêu Khóc,Phan Mạnh Quỳnh,Vietnam,Pop,Pop ballad,100,2,NA,SAD,RELAX,Editorial,MEDIUM
+S213,Chuyện Rằng,Thịnh Suy,Vietnam,Indie,Indie folk,75,3,NA,CALM,FOCUS,Editorial,MEDIUM
+S214,Một Cú Lừa,Bích Phương,Vietnam,Pop,Dance-pop,90,4,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S215,Đi Đu Đưa Đi,Bích Phương,Vietnam,Pop,Dance-pop,90,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S216,Đố Anh Đoán Được,Bích Phương,Vietnam,Pop,Pop,80,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S217,Hết Thương Cạn Nhớ,Đức Phúc,Vietnam,Pop,Pop ballad,100,2,NA,SAD,RELEASE,Editorial,MEDIUM
+S218,Ta Còn Yêu Nhau,Đức Phúc,Vietnam,Pop,Pop ballad,110,3,NA,SAD,RELAX,Editorial,MEDIUM
+S219,Còn Gì Đau Hơn Chữ Đã Từng,Quân A.P,Vietnam,Pop,Pop ballad,90,2,NA,SAD,RELEASE,Editorial,MEDIUM
+S220,Ai Là Người Thương Em,Quân A.P,Vietnam,Pop,Pop ballad,110,2,NA,SAD,RELAX,Editorial,MEDIUM
+S221,Có Hẹn Với Thanh Xuân,MONSTAR,Vietnam,Pop,Pop,120,3,NA,CALM,RELAX,Editorial,MEDIUM
+S222,Tình Yêu Chậm Trễ,MONSTAR,Vietnam,Pop,Pop,100,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S223,Chúng Ta Của Hiện Tại,Sơn Tùng M-TP,Vietnam,Pop,Pop ballad,120,3,NA,SAD,RELAX,Editorial,MEDIUM
+S224,Muộn Rồi Mà Sao Còn,Sơn Tùng M-TP,Vietnam,Pop,Pop,110,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S225,Có Chắc Yêu Là Đây,Sơn Tùng M-TP,Vietnam,Pop,Dance-pop,100,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S226,Hãy Trao Cho Anh,Sơn Tùng M-TP ft. Snoop Dogg,Vietnam,Hip-Hop,Pop rap,120,5,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S227,Making My Way,Sơn Tùng M-TP,Vietnam,Pop,Dance-pop,120,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S228,Đừng Làm Trái Tim Anh Đau,Sơn Tùng M-TP,Vietnam,Pop,Pop,120,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S229,Chắc Ai Đó Sẽ Về,Sơn Tùng M-TP,Vietnam,Pop,Pop ballad,110,2,NA,SAD,RELAX,Editorial,MEDIUM
+S230,Em Của Ngày Hôm Qua,Sơn Tùng M-TP,Vietnam,Pop,Dance-pop,100,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S231,Bên Trên Tầng Lầu,Tăng Duy Tân,Vietnam,Electronic,Dance-pop,120,4,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S232,Cắt Đôi Nỗi Sầu,Tăng Duy Tân,Vietnam,Electronic,Dance-pop,100,4,NA,SAD,RELEASE,Editorial,MEDIUM
+S233,Dạ Vũ,Tăng Duy Tân,Vietnam,Electronic,Dance-pop,110,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S234,Ngây Thơ,Tăng Duy Tân & Phong Max,Vietnam,Pop,Pop,100,3,NA,CALM,RELAX,Editorial,MEDIUM
+S235,Dễ Đến Dễ Đi,Quang Hùng MasterD,Vietnam,Pop,Dance-pop,100,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S236,Thủy Triều,Quang Hùng MasterD,Vietnam,Pop,Pop,90,3,NA,CALM,FOCUS,Editorial,MEDIUM
+S237,Tình Đầu Quá Chén,Quang Hùng MasterD,Vietnam,Pop,Pop,100,3,NA,NEUTRAL,RELAX,Editorial,MEDIUM
+S238,Thích Em Hơi Nhiều,Wren Evans,Vietnam,Pop,Indie pop,100,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S239,Từng Quen,Wren Evans,Vietnam,Pop,Pop ballad,100,3,NA,SAD,RELAX,Editorial,MEDIUM
+S240,vaicaunoicokhiennguoithaydoi,GREY D,Vietnam,Pop,Indie pop,100,3,NA,CALM,FOCUS,Editorial,MEDIUM
+S241,dự báo thời tiết hôm nay mưa,GREY D,Vietnam,Pop,Indie pop,80,2,NA,SAD,RELAX,Editorial,MEDIUM
+S242,Lời Tạm Biệt Chưa Nói,GREY D & Orange,Vietnam,Pop,Pop ballad,80,3,NA,SAD,RELEASE,Editorial,MEDIUM
+S243,Yêu 5,Rhymastic,Vietnam,Hip-Hop,Pop rap,120,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S244,Nến Và Hoa,Rhymastic,Vietnam,Hip-Hop,Melodic hip-hop,100,3,NA,CALM,FOCUS,Editorial,MEDIUM
+S245,Mình Cùng Nhau Đóng Băng,Thùy Chi,Vietnam,Pop,Pop ballad,120,2,NA,SAD,RELAX,Editorial,MEDIUM
+S246,Giữ Em Đi,Thùy Chi,Vietnam,Pop,Pop ballad,120,2,NA,SAD,RELAX,Editorial,MEDIUM
+S247,Xe Đạp,Thùy Chi & M4U,Vietnam,Pop,Pop ballad,100,3,NA,CALM,RELAX,Editorial,MEDIUM
+S248,Có Ai Thương Em Như Anh,Tóc Tiên ft. Touliver,Vietnam,Pop,Pop,100,3,NA,SAD,RELEASE,Editorial,MEDIUM
+S249,Ngày Mai,Tóc Tiên,Vietnam,Pop,Dance-pop,120,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S250,Sáng Mắt Chưa,Trúc Nhân,Vietnam,Pop,Dance-pop,120,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S251,Có Không Giữ Mất Đừng Tìm,Trúc Nhân,Vietnam,Pop,Pop,120,4,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S252,Bốn Chữ Lắm,Trúc Nhân & Trương Thảo Nhi,Vietnam,Pop,Dance-pop,100,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S253,Phía Sau Một Cô Gái,Soobin Hoàng Sơn,Vietnam,Pop,Pop ballad,120,2,NA,SAD,RELAX,Editorial,MEDIUM
+S254,Anh Đã Quen Với Cô Đơn,Soobin Hoàng Sơn,Vietnam,Pop,Pop ballad,120,2,NA,SAD,RELAX,Editorial,MEDIUM
+S255,Xin Đừng Lặng Im,Soobin Hoàng Sơn,Vietnam,Pop,Pop ballad,120,3,NA,SAD,RELEASE,Editorial,MEDIUM
+S256,Tình Yêu Màu Nắng,Đoàn Thúy Trang ft. BigDaddy,Vietnam,Pop,Folk pop,100,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S257,"Đừng Yêu Nữa, Em Mệt Rồi",MIN,Vietnam,Pop,Pop ballad,100,2,NA,SAD,RELAX,Editorial,MEDIUM
+S258,Trên Tình Bạn Dưới Tình Yêu,MIN,Vietnam,Pop,Dance-pop,120,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S259,Có Em Chờ,MIN ft. Mr A,Vietnam,Pop,Pop,120,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S260,Em Mới Là Người Yêu Anh,MIN,Vietnam,Pop,Dance-pop,120,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S261,Đen Đá Không Đường,AMEE,Vietnam,Pop,Pop,120,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S262,Sao Anh Chưa Về Nhà,AMEE ft. Ricky Star,Vietnam,Pop,Dance-pop,120,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S263,Anh Đánh Rơi Người Yêu Này,Andiez ft. AMEE,Vietnam,Pop,Pop,100,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S264,Yêu Thì Yêu Không Yêu Thì Yêu,AMEE,Vietnam,Pop,Dance-pop,100,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S265,Trái Tim Em Cũng Biết Đau,Bảo Anh,Vietnam,Pop,Pop ballad,100,3,NA,SAD,RELEASE,Editorial,MEDIUM
+S266,Đâu Chỉ Riêng Em,Mỹ Tâm,Vietnam,Pop,Pop ballad,100,2,NA,SAD,RELAX,Editorial,MEDIUM
+S267,Người Hãy Quên Em Đi,Mỹ Tâm,Vietnam,Pop,Dance-pop,100,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S268,As It Was,Harry Styles,International,Pop,Synth-pop,100,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S269,Watermelon Sugar,Harry Styles,International,Pop,Pop rock,100,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S270,Golden,Harry Styles,International,Pop,Pop,100,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S271,Anti-Hero,Taylor Swift,International,Pop,Synth-pop,100,3,NA,NEUTRAL,FOCUS,Editorial,MEDIUM
+S272,Cruel Summer,Taylor Swift,International,Pop,Synth-pop,100,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S273,Love Story,Taylor Swift,International,Pop,Country pop,100,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S274,cardigan,Taylor Swift,International,Pop,Indie folk,100,2,NA,SAD,RELAX,Editorial,MEDIUM
+S275,Someone You Loved,Lewis Capaldi,International,Pop,Pop ballad,100,2,NA,SAD,RELAX,Editorial,MEDIUM
+S276,Before You Go,Lewis Capaldi,International,Pop,Pop ballad,100,3,NA,SAD,RELEASE,Editorial,MEDIUM
+S277,lovely,Billie Eilish & Khalid,International,Pop,Dark pop,100,2,NA,SAD,RELAX,Editorial,MEDIUM
+S278,everything i wanted,Billie Eilish,International,Pop,Alternative pop,100,2,NA,SAD,RELAX,Editorial,MEDIUM
+S279,Happier Than Ever,Billie Eilish,International,Rock,Alternative rock,100,4,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S280,Ocean Eyes,Billie Eilish,International,Pop,Dream pop,100,2,NA,CALM,RELAX,Editorial,MEDIUM
+S281,drivers license,Olivia Rodrigo,International,Pop,Pop ballad,100,2,NA,SAD,RELAX,Editorial,MEDIUM
+S282,good 4 u,Olivia Rodrigo,International,Rock,Pop punk,100,5,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S283,traitor,Olivia Rodrigo,International,Pop,Pop ballad,100,2,NA,SAD,RELEASE,Editorial,MEDIUM
+S284,vampire,Olivia Rodrigo,International,Pop,Alternative pop,100,4,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S285,Levitating,Dua Lipa,International,Pop,Nu-disco,100,5,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S286,Don't Start Now,Dua Lipa,International,Pop,Nu-disco,100,5,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S287,New Rules,Dua Lipa,International,Pop,Dance-pop,100,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S288,Dance the Night,Dua Lipa,International,Pop,Disco-pop,100,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S289,STAY,The Kid LAROI & Justin Bieber,International,Pop,Pop rap,100,4,NA,INTENSE,UPLIFT,Editorial,MEDIUM
+S290,Peaches,Justin Bieber ft. Daniel Caesar & Giveon,International,R&B/Soul,Contemporary R&B,100,3,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S291,Golden Hour,JVKE,International,Pop,Piano pop,100,3,NA,CALM,RELAX,Editorial,MEDIUM
+S292,Heat Waves,Glass Animals,International,Indie,Indie pop,100,3,NA,CALM,FOCUS,Editorial,MEDIUM
+S293,Take Me to Church,Hozier,International,Rock,Indie rock,100,4,NA,INTENSE,RELEASE,Editorial,MEDIUM
+S294,Photograph,Ed Sheeran,International,Pop,Pop ballad,100,2,NA,SAD,RELAX,Editorial,MEDIUM
+S295,Thinking Out Loud,Ed Sheeran,International,Pop,Soul pop,100,2,NA,CALM,RELAX,Editorial,MEDIUM
+S296,Shivers,Ed Sheeran,International,Pop,Dance-pop,100,4,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM
+S297,Fix You,Coldplay,International,Rock,Alternative rock,100,3,NA,SAD,RELEASE,Editorial,MEDIUM
+S298,The Scientist,Coldplay,International,Rock,Alternative rock,101,2,NA,SAD,RELAX,Editorial,MEDIUM
+S299,Clocks,Coldplay,International,Rock,Alternative rock,102,3,NA,UPLIFTING,FOCUS,Editorial,MEDIUM
+S300,A Sky Full of Stars,Coldplay,International,Electronic,Progressive house,103,5,NA,UPLIFTING,UPLIFT,Editorial,MEDIUM

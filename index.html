@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101426">
+  <meta name="description" content="HILL AND STILL — khám phá gợi ý âm nhạc theo trạng thái, mục tiêu và sở thích cá nhân.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>HILL AND STILL — Find Your Own Rhythm</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-a" aria-hidden="true"></div>
+  <div class="ambient ambient-b" aria-hidden="true"></div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="HILL AND STILL - trang chủ">
+      <span class="brand-mark">H</span>
+      <span class="brand-word"><strong>HILL AND STILL</strong><small>FIND YOUR OWN RHYTHM</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Điều hướng chính">
+      <button class="nav-tab active" data-tab="intro" type="button">MAIN</button>
+      <button class="nav-tab" data-tab="discover" type="button">DISCOVER</button>
+      <button class="nav-tab" data-tab="mymusic" type="button">MY MUSIC</button>
+      <button class="nav-tab" data-tab="settings" type="button">SETTING</button>
+    </nav>
+    <span class="version">MVP 01 <i></i> RESEARCH BUILD</span>
+  </header>
+
+  <main class="layout" id="top">
+    <section class="main-view active" id="view-intro" data-view="intro">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> A SPACE TO CHECK IN WITH YOURSELF</p>
+          <h1>Every feeling<br>has its <em>own rhythm.</em></h1>
+          <p class="hero-lead">Có những lúc ta khó gọi tên cảm xúc của mình. HILL AND STILL giúp bạn khám phá những gợi ý âm nhạc dựa trên trạng thái hiện tại, mục tiêu cảm xúc và sở thích cá nhân.</p>
+          <button class="primary" data-go="discover" type="button">Bắt đầu khám phá <span aria-hidden="true">↗</span></button>
+          <p class="micro-note">Không chẩn đoán · Không điều trị · Không phát nhạc trực tiếp</p>
+        </div>
+        <div class="hero-art" aria-label="Minh họa những ngọn đồi và sóng âm thanh">
+          <img src="assets/hero-soundscape.svg" alt="Minh họa các ngọn đồi trừu tượng, mặt trời và các đường sóng âm thanh">
+          <div class="art-caption"><span>PAUSE</span><span>FEEL</span><span>DISCOVER</span></div>
+        </div>
+      </section>
+
+      <section class="panel how-card">
+        <div class="how-heading">
+          <p class="section-kicker">HOW IT WORKS</p>
+          <h2>Một hành trình khám phá, <span class="keep-together">bắt&nbsp;đầu</span> từ chính bạn.</h2>
+        </div>
+        <div class="how-steps">
+          <div class="how-step"><b>01</b><span><strong>Check in</strong><small>Stress · Energy · Mood</small></span></div>
+          <div class="how-step"><b>02</b><span><strong>Set your direction</strong><small>Goal · Genre preference</small></span></div>
+          <div class="how-step"><b>03</b><span><strong>Explore recommendations</strong><small>Top 5 · Explanation · Fit score</small></span></div>
+        </div>
+      </section>
+    </section>
+
+    <section class="main-view" id="view-discover" data-view="discover">
+      <section class="page-heading discover-heading">
+        <div class="discover-heading-main">
+          <p class="section-kicker">DISCOVER / YOUR PERSONAL SESSION</p>
+          <h1>Find your <em>next rhythm.</em></h1>
+          <p>Check in với trạng thái hiện tại, chọn hướng bạn muốn đến và khám phá những gợi ý phù hợp.</p>
+        </div>
+        <div class="discover-library-stat" aria-label="Thư viện gồm 300 bài hát">
+          <span class="stat-number">300</span>
+          <span class="stat-caption">TRACKS IN LIBRARY</span>
+        </div>
+        <div class="discover-flow" aria-label="Ba bước trong phiên khám phá">
+          <div class="flow-step active"><span>01</span><strong>Check in</strong></div>
+          <span class="flow-connector" aria-hidden="true"></span>
+          <div class="flow-step"><span>02</span><strong>Discover</strong></div>
+          <span class="flow-connector" aria-hidden="true"></span>
+          <div class="flow-step"><span>03</span><strong>Reflect</strong></div>
+        </div>
+      </section>
+
+      <section class="panel checkin-panel discover-checkin" id="d-checkin">
+        <div class="discover-panel-intro">
+          <div>
+            <p class="section-kicker">01 / PERSONAL CHECK-IN</p>
+            <h2>Hôm nay bạn đang cảm thấy thế nào?</h2>
+            <p>Chọn câu trả lời gần nhất với mình. Không có đáp án đúng hay sai.</p>
+          </div>
+          <span class="pill">Tự đánh giá</span>
+        </div>
+
+        <div class="discover-input-grid">
+          <section class="input-card state-card" aria-labelledby="stateCardTitle">
+            <div class="input-card-heading">
+              <span class="input-card-index">A</span>
+              <div><p class="section-kicker">CURRENT STATE</p><h3 id="stateCardTitle">Trạng thái hiện tại</h3></div>
+            </div>
+            <div class="form-grid state-fields">
+              <label class="range-field" for="stress">Mức căng thẳng <output id="stressOut">5/10</output><input id="stress" type="range" min="0" max="10" value="5"><span class="range-ends"><span>Thấp</span><span>Cao</span></span></label>
+              <label class="range-field" for="energy">Mức năng lượng <output id="energyOut">3/5</output><input id="energy" type="range" min="1" max="5" value="3"><span class="range-ends"><span>Thấp</span><span>Cao</span></span></label>
+              <label class="wide-field" for="mood">Tâm trạng hiện tại
+                <select id="mood"><option value="neutral">Bình thường</option><option value="low">Trầm / buồn</option><option value="tense">Căng thẳng</option><option value="positive">Tích cực</option><option value="restless">Bồn chồn</option></select>
+              </label>
+            </div>
+          </section>
+
+          <section class="input-card direction-card" aria-labelledby="directionCardTitle">
+            <div class="input-card-heading">
+              <span class="input-card-index">B</span>
+              <div><p class="section-kicker">YOUR DIRECTION</p><h3 id="directionCardTitle">Bạn muốn hướng đến đâu?</h3></div>
+            </div>
+            <div class="form-grid direction-fields">
+              <label for="goal">Mục tiêu cảm xúc
+                <select id="goal"><option value="calm">Thư giãn, dịu lại</option><option value="focus">Tập trung</option><option value="energize">Nạp năng lượng</option><option value="uplift">Cải thiện tâm trạng</option><option value="release">Giải tỏa cảm xúc</option><option value="maintain">Duy trì trạng thái hiện tại</option></select>
+              </label>
+              <label for="genre">Thể loại bạn yêu thích
+                <select id="genre">
+                  <option value="any">Không giới hạn</option><option value="ballad">Ballad</option><option value="pop">Pop</option><option value="rap">Rap / Hip-Hop</option><option value="rock">Rock</option><option value="electronic">Electronic / EDM</option><option value="instrumental">Instrumental / Classical</option><option value="nature">Ambient / Nature</option><option value="rnb">R&amp;B / Soul</option><option value="jazz">Jazz</option><option value="country">Country</option><option value="indie">Indie</option>
+                </select>
+              </label>
+              <label class="wide-field" for="researchCondition">Điều kiện nghiên cứu được nhóm phân công
+                <select id="researchCondition"><option value="" selected disabled>Chọn A / B / C / D</option><option value="A">A — Bộ bài hát tham chiếu cố định</option><option value="B">B — Chỉ theo thể loại yêu thích</option><option value="C">C — Trạng thái + mục tiêu + sở thích</option><option value="D">D — Nghỉ yên tĩnh</option></select>
+              </label>
+            </div>
+            <div class="condition-explainer"><strong>Điều kiện trải nghiệm:</strong> A, B, C hiển thị danh sách gợi ý; D là khoảng nghỉ yên tĩnh 3 phút. Phiên bản này không phát nhạc trực tiếp.</div>
+          </section>
+        </div>
+
+        <div class="discover-submit-row">
+          <div class="submit-copy"><span>READY WHEN YOU ARE</span><p>Thông tin của bạn được dùng để tạo danh sách theo điều kiện đã phân công.</p></div>
+          <button id="makePlaylist" class="primary" type="button">Bắt đầu khám phá <span aria-hidden="true">↗</span></button>
+        </div>
+        <p id="researchStatus" class="status-line" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="panel results-panel hidden" id="d-top5">
+        <div class="panel-heading"><div><span class="step-number">02</span><div><p class="section-kicker">MATCHED TO YOUR INPUT</p><h2>Top 5 recommendations</h2></div></div><span class="pill" id="resultHint">Chưa tạo gợi ý</span></div>
+        <p class="section-copy">Danh sách được xếp hạng theo quy tắc thuật toán. Điểm tương thích không phải xác suất hay cam kết về thay đổi cảm xúc.</p>
+        <div id="playlist" class="playlist"></div>
+        <div class="result-actions"><button id="refreshPlaylist" class="secondary" type="button" disabled>↻ Tạo lại gợi ý</button><button class="text-button" data-show-research type="button">Chuyển đến đánh giá sau trải nghiệm ↓</button></div>
+      </section>
+
+      <section class="panel rest-panel hidden" id="d-rest">
+        <div class="panel-heading"><div><span class="step-number">02</span><div><p class="section-kicker">CONDITION D</p><h2>Khoảng nghỉ yên tĩnh</h2></div></div><span class="pill">Không phát nhạc</span></div>
+        <p class="section-copy">Dành 3 phút nghỉ ngơi trong không gian yên tĩnh, không mở nhạc. Khi hoàn tất, bạn có thể chuyển sang đánh giá sau trải nghiệm.</p>
+        <div class="timer" id="restTimer">03:00</div>
+        <p class="timer-status" id="restStatus">Sẵn sàng bắt đầu khoảng nghỉ 3 phút.</p>
+        <button class="primary" id="startRest" type="button">Bắt đầu 3 phút nghỉ yên tĩnh</button>
+      </section>
+
+      <section class="panel research-panel hidden" id="d-research">
+        <div class="panel-heading"><div><span class="step-number">03</span><div><p class="section-kicker">POST-SESSION CHECK-IN</p><h2>Đánh giá sau trải nghiệm</h2></div></div><span class="pill">Không có đáp án đúng sai</span></div>
+        <p class="section-copy">Với A/B/C, hãy đánh giá danh sách gợi ý bạn vừa xem. Với D, hãy đánh giá sau khoảng nghỉ yên tĩnh.</p>
+        <div class="form-grid">
+          <label>Mã người tham gia<input id="participantCode" type="text" readonly value="Đang chờ cấp mã"></label>
+          <label>Điều kiện<input id="researchConditionLabel" type="text" readonly value="Chưa chọn"></label>
+          <label class="range-field" for="postStress">Mức căng thẳng hiện tại <output id="postStressOut">5/10</output><input id="postStress" type="range" min="0" max="10" value="5"></label>
+          <label class="range-field" for="postEnergy">Mức năng lượng hiện tại <output id="postEnergyOut">3/5</output><input id="postEnergy" type="range" min="1" max="5" value="3"></label>
+          <label for="goalAchievement">Mức độ phù hợp với mục tiêu
+            <select id="goalAchievement"><option value="1">1 — Không phù hợp</option><option value="2">2 — Ít phù hợp</option><option value="3" selected>3 — Bình thường</option><option value="4">4 — Khá phù hợp</option><option value="5">5 — Rất phù hợp</option></select>
+          </label>
+          <label for="researchSatisfaction">Mức độ hài lòng
+            <select id="researchSatisfaction"><option value="1">1 — Rất không hài lòng</option><option value="2">2 — Không hài lòng</option><option value="3" selected>3 — Bình thường</option><option value="4">4 — Hài lòng</option><option value="5">5 — Rất hài lòng</option></select>
+          </label>
+        </div>
+        <label class="consent-row"><input id="researchConsent" type="checkbox"><span>Tôi xác nhận đã được giải thích về hoạt động nghiên cứu, tự nguyện tham gia và đồng ý gửi câu trả lời ẩn danh cho nhóm nghiên cứu.</span></label>
+        <button id="submitResearch" class="primary full-button" type="button">Gửi câu trả lời nghiên cứu</button>
+        <p id="submitStatus" class="status-line" role="status" aria-live="polite"></p>
+      </section>
+    </section>
+
+    <section class="main-view" id="view-mymusic" data-view="mymusic">
+      <section class="page-heading"><p class="section-kicker">MY MUSIC / YOUR COLLECTION</p><h1>Keep your <em>favourites.</em></h1><p>Những bài hát bạn lưu trong quá trình khám phá được giữ trên trình duyệt của thiết bị này.</p></section>
+      <section class="panel settings-panel">
+        <div class="panel-heading"><div><span class="step-number">♪</span><div><p class="section-kicker">PERSONAL COLLECTION</p><h2>Bộ sưu tập của bạn</h2></div></div><span class="pill" id="myMusicCount">0 bài đã lưu</span></div>
+        <label class="search-label" for="myLibrarySearch">Tìm bài hát hoặc nghệ sĩ
+          <input id="myLibrarySearch" type="search" placeholder="Nhập tên bài hát hoặc nghệ sĩ...">
+        </label>
+        <div id="myLibrary" class="playlist library-list"><p class="empty-library">Bạn chưa lưu bài hát nào. Hãy khám phá Top 5 và lưu bài hát bạn muốn giữ lại.</p></div>
+        <p class="disclaimer">Bộ sưu tập chỉ lưu trên trình duyệt hiện tại; không đồng bộ lên Supabase.</p>
+      </section>
+    </section>
+
+    <section class="main-view" id="view-settings" data-view="settings">
+      <section class="page-heading"><p class="section-kicker">SETTINGS / PRIVACY</p><h1>Your space, <em>your rules.</em></h1><p>Quản lý dữ liệu lưu trên trình duyệt và xem thông tin kỹ thuật của phiên bản nghiên cứu.</p></section>
+      <section class="panel settings-panel">
+        <div class="setting-row"><div><strong>Recommendation profile</strong><p>Xóa các tín hiệu yêu thích và phản hồi được lưu trên thiết bị này.</p></div><button id="resetProfile" class="secondary" type="button">Đặt lại hồ sơ</button></div>
+        <div class="setting-row"><div><strong>Music library</strong><p>Thư viện metadata đang được nhúng trong website.</p></div><span class="setting-value" id="libraryCount">300 tracks</span></div>
+        <div class="setting-row"><div><strong>Research privacy</strong><p>Không thu thập tên, email hay mã học sinh. Bản ghi được gửi bằng mã tham gia tự động.</p></div><span class="setting-value">ANONYMOUS CODE</span></div>
+        <p class="disclaimer">HILL AND STILL là công cụ khám phá âm nhạc dựa trên tự đánh giá và metadata. Hệ thống không phải công cụ chẩn đoán, tư vấn hoặc điều trị sức khỏe.</p>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer"><span class="footer-mark">H</span><strong>HILL AND STILL</strong><small>FIND YOUR OWN RHYTHM</small><p>Music discovery, not diagnosis or treatment.</p></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="data/sounds.js"></script>
+  <script src="ai/recommender.js"></script>
+  <script src="supabase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
