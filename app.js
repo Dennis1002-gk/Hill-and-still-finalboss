@@ -267,52 +267,56 @@
     };
   }
 
+  // Refresh policy V2: preserve relevance before novelty.
+  function refreshEligible(ranked, condition) {
+    const valid = ranked.filter(item => Number.isFinite(item.score));
+    if (condition === 'B') return valid.filter(item => item.score === 100);
+    const best = Math.max(0, ...valid.map(item => item.score));
+    return valid.filter(item => item.score >= Math.max(75, best - 18));
+  }
+
   function weightedAlternativeBatch(ranked, condition, history, currentItems, limit = 5) {
-    const shownIds = new Set(history.flatMap(batch => batch.items.map(item => item.id)).filter(Boolean));
-    const currentIds = new Set(currentItems.map(item => (item.sound || item).id).filter(Boolean));
-    const maxScore = ranked.length ? ranked[0].score : 0;
-    let pool = ranked.filter(item => !shownIds.has((item.sound || item).id)
-      && item.score >= maxScore - 8);
-
-    if (pool.length < limit) {
-      pool = ranked.filter(item => !shownIds.has((item.sound || item).id)
-        && item.score >= maxScore - 18);
-    }
-    if (pool.length < limit) {
-      // If the participant has already seen almost the whole eligible pool,
-      // allow older tracks to return but never repeat a track in the current batch.
-      pool = ranked.filter(item => !currentIds.has((item.sound || item).id));
-    }
-    if (!pool.length) pool = ranked.slice();
-
+    const shownIds = new Set(history.flatMap(batch => batch.items.map(item => item.id)));
+    const id = item => (item.sound || item).id;
+    const currentIds = new Set(currentItems.map(id));
+    const eligible = refreshEligible(ranked, condition);
     const chosen = [];
-    const remaining = pool.slice();
-    while (chosen.length < limit && remaining.length) {
-      const minScore = Math.min(...remaining.map(item => Number(item.score) || 0));
-      const weights = remaining.map(item => Math.max(1, (Number(item.score) || 0) - minScore + 1));
-      const total = weights.reduce((sum, weight) => sum + weight, 0);
-      let point = Math.random() * total;
-      let selectedIndex = 0;
-      for (let i = 0; i < weights.length; i++) {
-        point -= weights[i];
-        if (point <= 0) { selectedIndex = i; break; }
+    const used = new Set();
+    const tiers = [
+      eligible.filter(item => !shownIds.has(id(item)) && !currentIds.has(id(item))),
+      eligible.filter(item => !currentIds.has(id(item))),
+      eligible
+    ];
+    for (const tier of tiers) {
+      const remaining = tier.filter(item => !used.has(id(item)));
+      while (chosen.length < limit && remaining.length) {
+        const minScore = Math.min(...remaining.map(item => item.score));
+        const weights = remaining.map(item => item.score - minScore + 1);
+        let point = Math.random() * weights.reduce((sum, weight) => sum + weight, 0);
+        let index = 0;
+        while (index < weights.length - 1 && (point -= weights[index]) > 0) index++;
+        const item = remaining.splice(index, 1)[0];
+        if (used.has(id(item))) continue;
+        used.add(id(item));
+        chosen.push(item);
       }
-      chosen.push(remaining.splice(selectedIndex, 1)[0]);
     }
     return chosen.sort((a, b) => b.score - a.score
-      || String((a.sound || a).id).localeCompare(String((b.sound || b).id), 'en', { numeric: true }));
+      || String(id(a)).localeCompare(String(id(b)), 'en', { numeric: true }));
   }
 
   function refreshRecommendations() {
     if (!['B', 'C'].includes(state.condition) || !state.ranked.length || state.submitted) return;
-    state.top = weightedAlternativeBatch(
+    const next = weightedAlternativeBatch(
       state.ranked, state.condition, state.recommendationHistory, state.top, 5
     );
+    if (!next.length) { toast('Không còn gợi ý đạt ngưỡng phù hợp.'); return; }
+    state.top = next;
     state.refreshCount += 1;
     state.recommendationHistory.push(snapshotRecommendations(state.top, 'refresh'));
     renderTop(state.top);
-    $('resultHint').textContent = `Điều kiện ${state.condition} · 5 gợi ý · Lần tạo lại ${state.refreshCount}`;
-    toast('Đã tạo một danh sách gợi ý khác. Lịch sử đã được ghi nhận.');
+    $('resultHint').textContent = `Điều kiện ${state.condition} · ${state.top.length} gợi ý · Lần tạo lại ${state.refreshCount}`;
+    toast('Đã cập nhật gợi ý phù hợp. Một số bài có thể lặp lại.');
   }
 
   async function createPlaylist() {
@@ -366,7 +370,7 @@
     } else {
       const ranked = window.HSRecommender.recommendByCondition(window.SOUNDS, state.user, condition);
       state.ranked = ranked;
-      state.top = ranked.slice(0, 5);
+      state.top = (condition === 'B' ? refreshEligible(ranked, condition) : ranked).slice(0, 5);
       state.recommendationHistory.push(snapshotRecommendations(state.top, 'initial'));
       renderTop(state.top);
       $('resultHint').textContent = `Điều kiện ${condition} · ${state.top.length} gợi ý`;
@@ -440,6 +444,7 @@
       pre_discover: state.pre,
       discover_data: {
         algorithm_version: window.HSRecommender.version || '2.0.0',
+        refresh_policy_version: '2.0.0',
         assigned_condition: condition,
         recommendation_method: condition === 'A' ? 'fixed_balanced_reference_set' : condition === 'B' ? 'genre_preference_only' : condition === 'C' ? 'state_goal_preference_content_matching' : 'quiet_rest',
         recommendations,
