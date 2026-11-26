@@ -17,7 +17,7 @@
 (function (global) {
   'use strict';
 
-  const VERSION = '2.0.0';
+  const VERSION = '3.0.0-preview';
   const STORAGE_KEY = 'hs_mvp01_profile'; // preserve existing profile key
   const DEFAULT_PROFILE = Object.freeze({
     genreBoost: {},
@@ -335,8 +335,10 @@
     if (condition === 'B') return 'Được xếp hạng chỉ theo thể loại hoặc nhóm thể loại bạn yêu thích; không dùng trạng thái và mục tiêu cảm xúc.';
     const bits = [];
     if (preferenceKey(user && user.genre) === 'any') bits.push('không áp dụng ưu tiên thể loại cụ thể');
-    else if (breakdown.preferenceFit >= 90) bits.push('khớp sở thích thể loại');
-    else if (breakdown.preferenceFit >= 60) bits.push('có liên hệ với nhóm thể loại bạn chọn');
+    else if ((breakdown.preferenceParts?.genre ?? breakdown.preferenceFit) >= 90) bits.push('khớp sở thích thể loại');
+    else if ((breakdown.preferenceParts?.genre ?? breakdown.preferenceFit) >= 60) bits.push('có liên hệ với nhóm thể loại bạn chọn');
+    if (breakdown.preferenceParts?.artist >= 95) bits.push('trùng bài hoặc nghệ sĩ yêu thích');
+    if (breakdown.preferenceParts?.similarity >= 75) bits.push('có đặc trưng tương đồng bài yêu thích');
     if (breakdown.stateFit >= 78) bits.push('tương thích với trạng thái hiện tại');
     if (breakdown.goalFit >= 80) bits.push('phù hợp với mục tiêu bạn chọn');
     else if (breakdown.goalFit >= 65) bits.push('có một số đặc điểm gần với mục tiêu bạn chọn');
@@ -344,8 +346,35 @@
     return `Lý do xếp hạng: ${bits.join('; ')}. Đây là mức tương thích theo quy tắc của hệ thống, không phải bảo đảm về tác động cảm xúc.`;
   }
 
+  // Preview: favorites are explicit local input, never learned from another participant.
+  function favoritePreference(track, user) {
+    const genre = preferenceFit(track, user);
+    const favorites = Array.isArray(user?.favoriteTracks) ? user.favoriteTracks.slice(0, 3) : [];
+    if (!favorites.length) return { total: genre, genre, artist: null, similarity: null };
+    const artistTokens = value => String(value || '').split(/\s+(?:feat\.?|ft\.?|with|x|&|and)\s+|[,;]/i).map(normalizeText).filter(Boolean);
+    const artists = artistTokens(track.artist);
+    let artist = 0, similarity = 0;
+    for (const f of favorites) {
+      const exact = track.id === f.id;
+      const sameArtist = artists.some(x => artistTokens(f.artist).includes(x));
+      const artistFit = exact ? 100 : sameArtist ? 95 : track.canonicalGenre === f.canonicalGenre ? 45 : 20;
+      artist = Math.max(artist, artistFit);
+      const features = [];
+      if (track.canonicalGenre && f.canonicalGenre) features.push([30,track.canonicalGenre===f.canonicalGenre?100:25]);
+      if (track.subgenre && f.subgenre) features.push([20,normalizeText(track.subgenre)===normalizeText(f.subgenre)?100:track.canonicalGenre===f.canonicalGenre?55:20]);
+      if (track.energy!=null && f.energy!=null) features.push([20,Math.max(0,100-25*Math.abs(track.energy-f.energy))]);
+      if (track.valence!=null && f.valence!=null) features.push([15,100-100*Math.abs(track.valence-f.valence)]);
+      if (track.bpm!=null && f.bpm!=null) features.push([15,Math.max(0,100-1.25*Math.min(Math.abs(track.bpm-f.bpm),Math.abs(2*track.bpm-f.bpm),Math.abs(track.bpm-2*f.bpm)))]);
+      const sum = features.reduce((n,[w])=>n+w,0);
+      const fit = sum ? features.reduce((n,[w,v])=>n+w*v,0)/sum : 60;
+      similarity = Math.max(similarity, fit);
+    }
+    return { total: 0.4*genre+0.4*artist+0.2*similarity, genre, artist, similarity };
+  }
+
   function scoreOne(track, user, profile = null) {
-    const preference = preferenceFit(track, user);
+    const preferenceParts = favoritePreference(track, user);
+    const preference = preferenceParts.total;
     const state = currentStateFit(track, user);
     const goal = goalFit(track, user);
     // V2 weights: state 30%, desired goal 45%, personal genre preference 25%.
@@ -356,6 +385,7 @@
       stateFit: Math.round(state * 10) / 10,
       goalFit: Math.round(goal * 10) / 10,
       preferenceFit: Math.round(preference * 10) / 10,
+      preferenceParts,
       weights: { state: 0.30, goal: 0.45, preference: 0.25 }
     };
     return {
@@ -546,6 +576,7 @@
     recommendAll,
     recommendByCondition,
     scoreOne,
+    favoritePreference,
     auditData,
     getFixedReferenceIds: sounds => fixedReferenceSet(normalizeLibrary(sounds)).map(s => s.id),
     load,
