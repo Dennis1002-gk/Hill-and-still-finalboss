@@ -474,6 +474,7 @@
       pre_discover: state.pre,
       discover_data: {
         algorithm_version: window.HSRecommender.version || '2.0.0',
+        sound_library_version: window.SOUND_LIBRARY_VERSION || '300-original',
         refresh_policy_version: '2.1.0',
         exposure_protocol_version: '2.0.0',
         exposure_duration_seconds: condition === 'D' ? 120 : null,
