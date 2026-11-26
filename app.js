@@ -386,7 +386,7 @@
       show($('d-top5'));
       state.exposureStartedAt = new Date().toISOString();
       $('researchStatus').textContent = state.previewOnly
-        ? 'V2 preview — thử gợi ý trên 600 bài; không gửi dữ liệu nghiên cứu.'
+        ? `V2 preview — thử gợi ý trên ${window.SOUNDS.length} bài; không gửi dữ liệu nghiên cứu.`
         : `Đã cấp mã tham gia ${state.participantCode}. Bạn có thể tự nghe bài hát trên nền tảng nhạc của mình, rồi quay lại đánh giá.`;
     }
     $('d-checkin').classList.add('completed');
