@@ -129,7 +129,11 @@
       meta.innerHTML = metaHTML(sound);
       const score = document.createElement('div');
       score.className = 'track-score';
-      score.textContent = Number.isFinite(item.score) ? `Điểm tương thích theo quy tắc: ${Math.round(item.score)}/100` : 'Bộ tham chiếu cố định';
+      score.textContent = state.condition === 'A'
+        ? `Vị trí ${index + 1}/5 trong bộ tham chiếu cố định`
+        : state.condition === 'B'
+          ? `Điểm khớp thể loại theo quy tắc: ${Math.round(item.score)}/100`
+          : `Điểm tương thích theo quy tắc: ${Math.round(item.score)}/100`;
       const reason = document.createElement('p');
       reason.className = 'track-reason';
       reason.textContent = item.reason || 'Được chọn bởi phương pháp của điều kiện nghiên cứu.';
@@ -288,7 +292,6 @@
       $('resultHint').textContent = `Điều kiện ${condition} · ${state.top.length} gợi ý`;
       show($('d-top5'));
       show($('d-research'));
-      $('refreshPlaylist').disabled = condition !== 'C';
       $('researchStatus').textContent = state.previewOnly
         ? 'Đang ở chế độ xem trước; cần cấu hình Supabase và mã tham gia để lưu dữ liệu.'
         : `Đã cấp mã tham gia ${state.participantCode}. Website chỉ hiển thị gợi ý, không phát nhạc.`;
@@ -298,13 +301,6 @@
   }
 
   $('makePlaylist').addEventListener('click', createPlaylist);
-  $('refreshPlaylist').addEventListener('click', () => {
-    if (state.condition !== 'C' || !state.user) return;
-    state.top = window.HSRecommender.recommendByCondition(window.SOUNDS, state.user, 'C').slice(0, 5);
-    renderTop(state.top);
-    $('resultHint').textContent = 'Điều kiện C · 5 gợi ý';
-  });
-
   function stopRestTimer(resetUnfinished = true) {
     if (state.restInterval) clearInterval(state.restInterval);
     state.restInterval = null;
