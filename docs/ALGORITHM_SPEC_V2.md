@@ -64,7 +64,7 @@ The database does not contain a Vocal/Instrumental field. Therefore, the `instru
 
 ### Exposure-time protocol note
 
-In the current website, A/B/C display recommendations without enforcing a fixed viewing period, while D uses a three-minute quiet-rest timer. Exposure duration is therefore not standardized across conditions. Record this as a design limitation; do not interpret differences between conditions as clean causal effects of the recommendation method. If equal exposure is required, revise and pilot the protocol so A/B/C and D use the same pre-specified interval before collecting the main dataset.
+In the current website, A/B/C display recommendations without enforcing a fixed viewing period, while D uses a two-minute quiet-rest timer. Exposure duration is therefore not standardized across conditions. Record this as a design limitation; do not interpret differences between conditions as clean causal effects of the recommendation method. If equal exposure is required, revise and pilot the protocol so A/B/C and D use the same pre-specified interval before collecting the main dataset.
 
 ## 4. Data quality rules
 
@@ -90,3 +90,6 @@ The module preserves the existing public method names `recommend`, `recommendAll
 ## 6. Research interpretation
 
 The current website displays recommendations but does not play audio. Therefore the current experiment can evaluate recommendation relevance, perceived suitability, goal fit, satisfaction, and interface usability. It cannot conclude that listening to music changed participants' emotions or improved mental health. To study listening effects, a future version must include authorized audio playback, standardized exposure, and a verified playback record.
+
+
+Refresh policy 2.1.0: B retains only the highest preference-score tier (minimum 70); no-preference input admits all tracks at the neutral score of 70. This is a technical selection rule, not a validated threshold. Fewer than five tracks may be shown. D uses 120 seconds.
