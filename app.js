@@ -52,7 +52,6 @@
 
   function showMain(name) {
     if (name !== 'discover') stopRestTimer();
-    else if (state.pre && state.condition !== 'D' && !state.restCompleted) startExposure();
     document.querySelectorAll('.main-view').forEach((view) => {
       view.classList.toggle('active', view.dataset.view === name);
     });
@@ -69,7 +68,15 @@
     button.addEventListener('click', () => showMain(button.dataset.go));
   });
   document.querySelectorAll('[data-show-research]').forEach((button) => {
-    button.addEventListener('click', () => { if (state.restCompleted) $('d-research').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    button.addEventListener('click', () => {
+      if (state.pre && ['A','B','C'].includes(state.condition) && !state.restCompleted) {
+        state.restCompleted = true;
+        state.exposureCompletedAt = new Date().toISOString();
+        hide($('refreshPlaylist'));
+        show($('d-research'));
+      }
+      if (state.restCompleted) $('d-research').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
   });
 
   function getUser() {
@@ -357,6 +364,10 @@
     state.exposureStartedAt = null;
     state.exposureCompletedAt = null;
     $('researchConsent').checked = false;
+    $('listeningReport').value = '';
+    if (condition === 'D') hide($('listeningReportField'));
+    else show($('listeningReportField'));
+    $('finishExplore').disabled = false;
     $('postStress').value = 5; $('postStressOut').textContent = '5/10';
     $('postEnergy').value = 3; $('postEnergyOut').textContent = '3/5';
     $('goalAchievement').value = '3'; $('researchSatisfaction').value = '3';
@@ -386,10 +397,10 @@
       $('resultHint').textContent = `Điều kiện ${condition} · ${state.top.length} gợi ý`;
       if (condition === 'B' || condition === 'C') show($('refreshPlaylist'));
       show($('d-top5'));
-      startExposure();
+      state.exposureStartedAt = new Date().toISOString();
       $('researchStatus').textContent = state.previewOnly
         ? 'Đang ở chế độ xem trước; cần cấu hình Supabase và mã tham gia để lưu dữ liệu.'
-        : `Đã cấp mã tham gia ${state.participantCode}. Website chỉ hiển thị gợi ý, không phát nhạc.`;
+        : `Đã cấp mã tham gia ${state.participantCode}. Bạn có thể tự nghe bài hát trên nền tảng nhạc của mình, rồi quay lại đánh giá.`;
     }
     $('d-checkin').classList.add('completed');
     (condition === 'D' ? $('d-rest') : $('d-top5')).scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -400,41 +411,32 @@
   function stopRestTimer(resetUnfinished = true) {
     if (state.restInterval) clearInterval(state.restInterval);
     state.restInterval = null;
-    if (resetUnfinished && state.condition && !state.restCompleted) {
+    if (resetUnfinished && state.condition === 'D' && !state.restCompleted) {
       state.exposureStartedAt = null;
       state.restRemaining = 120;
       $('restTimer').textContent = '02:00';
-      $('exploreTimer').textContent = '02:00';
       $('startRest').disabled = false;
-      $('finishExplore').disabled = true;
       $('restStatus').textContent = 'Bắt đầu lại khoảng nghỉ khi sẵn sàng.';
-      $('exploreStatus').textContent = 'Quay lại để bắt đầu lại 2 phút khám phá.';
     }
   }
   function startExposure() {
-    if (state.restInterval || state.restCompleted || !state.condition || document.hidden) return;
-    const quiet = state.condition === 'D';
-    const timer = $(quiet ? 'restTimer' : 'exploreTimer');
-    const status = $(quiet ? 'restStatus' : 'exploreStatus');
+    if (state.restInterval || state.restCompleted || state.condition !== 'D' || document.hidden) return;
     state.exposureStartedAt = new Date().toISOString();
     state.restRemaining = 120;
-    timer.textContent = '02:00';
+    $('restTimer').textContent = '02:00';
     $('startRest').disabled = true;
-    $('finishExplore').disabled = true;
-    status.textContent = quiet ? 'Đang nghỉ yên tĩnh. Không mở nhạc.' : 'Khám phá danh sách trong 2 phút. Không mở nhạc.';
+    $('restStatus').textContent = 'Đang nghỉ yên tĩnh. Không mở nhạc.';
     state.restInterval = setInterval(() => {
       if (document.hidden) { stopRestTimer(); return; }
       state.restRemaining -= 1;
       const minutes = String(Math.floor(state.restRemaining / 60)).padStart(2, '0');
       const seconds = String(state.restRemaining % 60).padStart(2, '0');
-      timer.textContent = minutes + ':' + seconds;
+      $('restTimer').textContent = minutes + ':' + seconds;
       if (state.restRemaining <= 0) {
         stopRestTimer(false);
         state.restCompleted = true;
         state.exposureCompletedAt = new Date().toISOString();
-        status.textContent = 'Đã hoàn thành 2 phút. Bạn có thể đánh giá sau trải nghiệm.';
-        $('finishExplore').disabled = false;
-        hide($('refreshPlaylist'));
+        $('restStatus').textContent = 'Đã hoàn thành 2 phút. Bạn có thể đánh giá sau trải nghiệm.';
         show($('d-research'));
       }
     }, 1000);
@@ -442,14 +444,14 @@
   $('startRest').addEventListener('click', startExposure);
   document.addEventListener('visibilitychange', () => {
     if (document.hidden && state.restInterval) stopRestTimer();
-    else if (!document.hidden && state.pre && state.condition !== 'D' && !state.restCompleted && $('view-discover').classList.contains('active')) startExposure();
   });
 
   async function submitResearch() {
     const status = $('submitStatus');
     if (!state.pre || !state.condition) { status.textContent = 'Bạn cần hoàn thành phần check-in trước.'; return; }
     if (state.submitted) { status.textContent = 'Phiên này đã được gửi.'; return; }
-    if (!state.restCompleted) { status.textContent = 'Bạn cần hoàn thành 2 phút trải nghiệm trước khi gửi.'; return; }
+    if (!state.restCompleted) { status.textContent = state.condition === 'D' ? 'Bạn cần hoàn thành 2 phút nghỉ yên tĩnh.' : 'Hãy chuyển đến đánh giá sau trải nghiệm.'; return; }
+    if (state.condition !== 'D' && !['listened','not_listened'].includes($('listeningReport').value)) { status.textContent = 'Hãy cho biết bạn đã tự nghe bài gợi ý hay chưa.'; return; }
     if (!state.participantCode || state.previewOnly) { status.textContent = 'Đang ở chế độ xem trước. Chưa thể gửi dữ liệu lên Supabase.'; return; }
     if (!$('researchConsent').checked) { status.textContent = 'Bạn cần xác nhận đồng ý tham gia trước khi gửi.'; return; }
 
@@ -473,8 +475,11 @@
       discover_data: {
         algorithm_version: window.HSRecommender.version || '2.0.0',
         refresh_policy_version: '2.1.0',
-        exposure_protocol_version: '1.0.0',
-        exposure_duration_seconds: 120,
+        exposure_protocol_version: '2.0.0',
+        exposure_duration_seconds: condition === 'D' ? 120 : null,
+        exposure_mode: condition === 'D' ? 'quiet_rest_120s' : 'self_paced_external_listening',
+        listening_self_report: condition === 'D' ? null : $('listeningReport').value,
+        listening_verified: false,
         exposure_started_at: state.exposureStartedAt,
         exposure_completed_at: state.exposureCompletedAt,
         rest_duration_seconds: state.condition === 'D' ? 120 : null,
@@ -487,7 +492,7 @@
         audio_played: false,
         interaction_note: condition === 'D'
           ? 'Condition D: quiet rest for 2 minutes; website does not play audio.'
-          : 'Website displays ranked music metadata only; no playback is embedded and listening is not verified.'
+          : 'Self-paced recommendations; external listening is self-reported, not verified. No embedded playback or fixed listening duration.'
       },
       post_discover: {
         stress: Number($('postStress').value),
