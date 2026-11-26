@@ -14,6 +14,8 @@
     recommendationHistory: [],
     refreshCount: 0,
     restCompleted: false,
+    exposureStartedAt: null,
+    exposureCompletedAt: null,
     restInterval: null,
     restRemaining: 120,
     submitted: false,
@@ -50,6 +52,7 @@
 
   function showMain(name) {
     if (name !== 'discover') stopRestTimer();
+    else if (state.pre && state.condition !== 'D' && !state.restCompleted) startExposure();
     document.querySelectorAll('.main-view').forEach((view) => {
       view.classList.toggle('active', view.dataset.view === name);
     });
@@ -66,7 +69,7 @@
     button.addEventListener('click', () => showMain(button.dataset.go));
   });
   document.querySelectorAll('[data-show-research]').forEach((button) => {
-    button.addEventListener('click', () => $('d-research').scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    button.addEventListener('click', () => { if (state.restCompleted) $('d-research').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
   });
 
   function getUser() {
@@ -309,7 +312,7 @@
   }
 
   function refreshRecommendations() {
-    if (!['B', 'C'].includes(state.condition) || !state.ranked.length || state.submitted) return;
+    if (!['B', 'C'].includes(state.condition) || !state.ranked.length || state.submitted || state.restCompleted) return;
     const next = weightedAlternativeBatch(
       state.ranked, state.condition, state.recommendationHistory, state.top, 5
     );
@@ -351,6 +354,8 @@
     state.submitted = false;
     $('submitResearch').disabled = false;
     state.restCompleted = false;
+    state.exposureStartedAt = null;
+    state.exposureCompletedAt = null;
     $('researchConsent').checked = false;
     $('postStress').value = 5; $('postStressOut').textContent = '5/10';
     $('postEnergy').value = 3; $('postEnergyOut').textContent = '3/5';
@@ -381,7 +386,7 @@
       $('resultHint').textContent = `Điều kiện ${condition} · ${state.top.length} gợi ý`;
       if (condition === 'B' || condition === 'C') show($('refreshPlaylist'));
       show($('d-top5'));
-      show($('d-research'));
+      startExposure();
       $('researchStatus').textContent = state.previewOnly
         ? 'Đang ở chế độ xem trước; cần cấu hình Supabase và mã tham gia để lưu dữ liệu.'
         : `Đã cấp mã tham gia ${state.participantCode}. Website chỉ hiển thị gợi ý, không phát nhạc.`;
@@ -395,38 +400,56 @@
   function stopRestTimer(resetUnfinished = true) {
     if (state.restInterval) clearInterval(state.restInterval);
     state.restInterval = null;
-    if (resetUnfinished && state.condition === 'D' && !state.restCompleted) {
+    if (resetUnfinished && state.condition && !state.restCompleted) {
+      state.exposureStartedAt = null;
       state.restRemaining = 120;
       $('restTimer').textContent = '02:00';
+      $('exploreTimer').textContent = '02:00';
       $('startRest').disabled = false;
-      $('restStatus').textContent = 'Khoảng nghỉ đã tạm dừng khi bạn rời trang. Bắt đầu lại khi sẵn sàng.';
+      $('finishExplore').disabled = true;
+      $('restStatus').textContent = 'Bắt đầu lại khoảng nghỉ khi sẵn sàng.';
+      $('exploreStatus').textContent = 'Quay lại để bắt đầu lại 2 phút khám phá.';
     }
   }
-  $('startRest').addEventListener('click', () => {
-    if (state.restInterval || state.restCompleted) return;
+  function startExposure() {
+    if (state.restInterval || state.restCompleted || !state.condition || document.hidden) return;
+    const quiet = state.condition === 'D';
+    const timer = $(quiet ? 'restTimer' : 'exploreTimer');
+    const status = $(quiet ? 'restStatus' : 'exploreStatus');
+    state.exposureStartedAt = new Date().toISOString();
     state.restRemaining = 120;
+    timer.textContent = '02:00';
     $('startRest').disabled = true;
-    $('restStatus').textContent = 'Đang nghỉ yên tĩnh. Không mở nhạc trong khoảng thời gian này.';
+    $('finishExplore').disabled = true;
+    status.textContent = quiet ? 'Đang nghỉ yên tĩnh. Không mở nhạc.' : 'Khám phá danh sách trong 2 phút. Không mở nhạc.';
     state.restInterval = setInterval(() => {
+      if (document.hidden) { stopRestTimer(); return; }
       state.restRemaining -= 1;
       const minutes = String(Math.floor(state.restRemaining / 60)).padStart(2, '0');
       const seconds = String(state.restRemaining % 60).padStart(2, '0');
-      $('restTimer').textContent = `${minutes}:${seconds}`;
+      timer.textContent = minutes + ':' + seconds;
       if (state.restRemaining <= 0) {
         stopRestTimer(false);
         state.restCompleted = true;
-        $('restStatus').textContent = 'Đã hoàn thành 2 phút nghỉ yên tĩnh. Bạn có thể đánh giá sau trải nghiệm.';
+        state.exposureCompletedAt = new Date().toISOString();
+        status.textContent = 'Đã hoàn thành 2 phút. Bạn có thể đánh giá sau trải nghiệm.';
+        $('finishExplore').disabled = false;
+        hide($('refreshPlaylist'));
         show($('d-research'));
-        $('d-research').scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }, 1000);
+  }
+  $('startRest').addEventListener('click', startExposure);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && state.restInterval) stopRestTimer();
+    else if (!document.hidden && state.pre && state.condition !== 'D' && !state.restCompleted && $('view-discover').classList.contains('active')) startExposure();
   });
 
   async function submitResearch() {
     const status = $('submitStatus');
     if (!state.pre || !state.condition) { status.textContent = 'Bạn cần hoàn thành phần check-in trước.'; return; }
     if (state.submitted) { status.textContent = 'Phiên này đã được gửi.'; return; }
-    if (state.condition === 'D' && !state.restCompleted) { status.textContent = 'Bạn cần hoàn thành 2 phút nghỉ yên tĩnh trước khi gửi.'; return; }
+    if (!state.restCompleted) { status.textContent = 'Bạn cần hoàn thành 2 phút trải nghiệm trước khi gửi.'; return; }
     if (!state.participantCode || state.previewOnly) { status.textContent = 'Đang ở chế độ xem trước. Chưa thể gửi dữ liệu lên Supabase.'; return; }
     if (!$('researchConsent').checked) { status.textContent = 'Bạn cần xác nhận đồng ý tham gia trước khi gửi.'; return; }
 
@@ -450,6 +473,10 @@
       discover_data: {
         algorithm_version: window.HSRecommender.version || '2.0.0',
         refresh_policy_version: '2.1.0',
+        exposure_protocol_version: '1.0.0',
+        exposure_duration_seconds: 120,
+        exposure_started_at: state.exposureStartedAt,
+        exposure_completed_at: state.exposureCompletedAt,
         rest_duration_seconds: state.condition === 'D' ? 120 : null,
         assigned_condition: condition,
         recommendation_method: condition === 'A' ? 'fixed_balanced_reference_set' : condition === 'B' ? 'genre_preference_only' : condition === 'C' ? 'state_goal_preference_content_matching' : 'quiet_rest',
