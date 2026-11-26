@@ -158,19 +158,8 @@
                   <option value="any">Không giới hạn</option><option value="ballad">Ballad</option><option value="pop">Pop</option><option value="rap">Rap / Hip-Hop</option><option value="rock">Rock</option><option value="electronic">Electronic / EDM</option><option value="instrumental">Instrumental / Classical</option><option value="nature">Ambient / Nature</option><option value="rnb">R&amp;B / Soul</option><option value="jazz">Jazz</option><option value="country">Country</option><option value="indie">Indie</option>
                 </select>
               </label>
-              <section class="wide-field" id="favoritePanel" style="display:grid;gap:8px;min-width:0;padding:12px;border:1px solid rgba(185,182,228,.25);border-radius:12px" aria-label="Hồ sơ sở thích">
-                <strong>3 bài hát yêu thích (tùy chọn)</strong>
-                <small>Điều kiện C sử dụng bài đã chọn; A/B/D không sử dụng. Có thể tìm theo tên bài hoặc nghệ sĩ.</small>
-                <input type="search" id="favoriteSearch" placeholder="Tìm trong 600 bài..." autocomplete="off" aria-label="Tìm bài hát yêu thích">
-                <div id="favoriteSelected" style="display:flex;flex-wrap:wrap;gap:6px" aria-live="polite"></div>
-                <div id="favoriteResults" style="display:grid;gap:5px;max-height:240px;overflow:auto" aria-label="Kết quả tìm kiếm"></div>
-                <label style="display:flex;align-items:center;gap:8px"><input id="rememberFavorites" type="checkbox" style="width:auto;flex:none">Ghi nhớ trên trình duyệt này</label>
-                <small>Chỉ lưu ID bài hát và thể loại nếu bạn đồng ý; không lưu IP, tâm trạng hoặc stress. Không chọn nếu dùng máy chung.</small>
-                <button id="clearFavorites" type="button" class="secondary">Xóa 3 bài đã chọn</button>
-                <p id="favoriteStatus" role="status" aria-live="polite"></p>
-              </section>
-              <label class="wide-field" for="researchCondition">Chế độ thử nghiệm (chọn A / B / C / D)
-                <select id="researchCondition"><option value="" disabled>Chọn A / B / C / D</option><option value="A">A — Bộ bài hát tham chiếu cố định</option><option value="B">B — Chỉ theo thể loại yêu thích</option><option value="C" selected>C — Trạng thái + mục tiêu + hồ sơ sở thích V3</option><option value="D">D — Nghỉ yên tĩnh</option></select>
+              <label class="wide-field" for="researchCondition">Điều kiện nghiên cứu được nhóm phân công
+                <select id="researchCondition"><option value="" selected disabled>Chọn A / B / C / D</option><option value="A">A — Bộ bài hát tham chiếu cố định</option><option value="B">B — Chỉ theo thể loại yêu thích</option><option value="C">C — Trạng thái + mục tiêu + sở thích</option><option value="D">D — Nghỉ yên tĩnh</option></select>
               </label>
             </div>
             <div class="condition-explainer"><strong>Điều kiện trải nghiệm:</strong> A, B, C nhận gợi ý, tự nghe trên nền tảng nhạc của mình rồi đánh giá khi sẵn sàng; D nghỉ yên tĩnh 2 phút. Website không phát nhạc trực tiếp.</div>
@@ -220,7 +209,7 @@
         </div>
         <label class="consent-row"><input id="researchConsent" type="checkbox"><span>Tôi xác nhận đã được giải thích về hoạt động nghiên cứu, tự nguyện tham gia và đồng ý gửi câu trả lời ẩn danh cho nhóm nghiên cứu.</span></label>
         <button id="submitResearch" class="primary full-button" type="button" disabled>Chỉ xem trước — không gửi nghiên cứu</button>
-        <p id="submitStatus" class="status-line" role="status" aria-live="polite">V3 preview: không gửi dữ liệu lên Supabase.</p>
+        <p id="submitStatus" class="status-line" role="status" aria-live="polite"></p>
       </section>
     </section>
 
@@ -240,8 +229,8 @@
       <section class="page-heading"><p class="section-kicker">SETTINGS / PRIVACY</p><h1>Your space, <em>your rules.</em></h1><p>Quản lý dữ liệu lưu trên trình duyệt và xem thông tin kỹ thuật của phiên bản nghiên cứu.</p></section>
       <section class="panel settings-panel">
         <div class="setting-row"><div><strong>Recommendation profile</strong><p>Xóa các tín hiệu yêu thích và phản hồi được lưu trên thiết bị này.</p></div><button id="resetProfile" class="secondary" type="button">Đặt lại hồ sơ</button></div>
-        <div class="setting-row"><div><strong>Music library</strong><p>Thư viện metadata đang được nhúng trong website.</p></div><span class="setting-value" id="libraryCount">600 tracks · V3 preview</span></div>
-        <div class="setting-row"><div><strong>Research privacy</strong><p>Bản xem trước không gửi dữ liệu nghiên cứu. Hồ sơ yêu thích chỉ lưu trên trình duyệt nếu bạn bật ghi nhớ.</p></div><span class="setting-value">ANONYMOUS CODE</span></div>
+        <div class="setting-row"><div><strong>Music library</strong><p>Thư viện metadata đang được nhúng trong website.</p></div><span class="setting-value" id="libraryCount">600 tracks · V2 preview</span></div>
+        <div class="setting-row"><div><strong>Research privacy</strong><p>Bản xem trước không gửi dữ liệu nghiên cứu lên Supabase.</p></div><span class="setting-value">ANONYMOUS CODE</span></div>
         <p class="disclaimer">HILL AND STILL là công cụ khám phá âm nhạc dựa trên tự đánh giá và metadata. Hệ thống không phải công cụ chẩn đoán, tư vấn hoặc điều trị sức khỏe.</p>
       </section>
     </section>
@@ -252,7 +241,7 @@
 
   <script src="data/sounds.js"></script>
   <script src="ai/recommender.js"></script>
-  <!-- V3 preview intentionally excludes Supabase configuration. -->
+  <!-- Isolated preview: no Supabase configuration loaded. -->
   <script src="app.js"></script>
 
   <script>
