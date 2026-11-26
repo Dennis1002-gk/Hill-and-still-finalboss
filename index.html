@@ -118,7 +118,7 @@
                 <select id="researchCondition"><option value="" selected disabled>Chọn A / B / C / D</option><option value="A">A — Bộ bài hát tham chiếu cố định</option><option value="B">B — Chỉ theo thể loại yêu thích</option><option value="C">C — Trạng thái + mục tiêu + sở thích</option><option value="D">D — Nghỉ yên tĩnh</option></select>
               </label>
             </div>
-            <div class="condition-explainer"><strong>Điều kiện trải nghiệm:</strong> A, B, C hiển thị danh sách gợi ý; D là khoảng nghỉ yên tĩnh 2 phút. Phiên bản này không phát nhạc trực tiếp.</div>
+            <div class="condition-explainer"><strong>Điều kiện trải nghiệm:</strong> A, B, C khám phá danh sách gợi ý trong 2 phút; D nghỉ yên tĩnh 2 phút. Phiên bản này không phát nhạc trực tiếp.</div>
           </section>
         </div>
 
@@ -132,8 +132,9 @@
       <section class="panel results-panel hidden" id="d-top5">
         <div class="panel-heading"><div><span class="step-number">02</span><div><p class="section-kicker">MATCHED TO YOUR INPUT</p><h2>Top 5 recommendations</h2></div></div><span class="pill" id="resultHint">Chưa tạo gợi ý</span></div>
         <p class="section-copy">Danh sách được xếp hạng theo quy tắc thuật toán. Điểm tương thích không phải xác suất hay cam kết về thay đổi cảm xúc.</p>
+        <div class="timer" id="exploreTimer">02:00</div><p class="timer-status" id="exploreStatus">Khám phá trong 2 phút.</p>
         <div id="playlist" class="playlist"></div>
-        <div class="result-actions"><button id="refreshPlaylist" class="secondary hidden" type="button">↻ Tạo lại gợi ý</button><button class="text-button" data-show-research type="button">Chuyển đến đánh giá sau trải nghiệm ↓</button></div>
+        <div class="result-actions"><button id="refreshPlaylist" class="secondary hidden" type="button">↻ Tạo lại gợi ý</button><button class="text-button" id="finishExplore" data-show-research type="button" disabled>Chuyển đến đánh giá sau trải nghiệm ↓</button></div>
       </section>
 
       <section class="panel rest-panel hidden" id="d-rest">
