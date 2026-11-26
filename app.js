@@ -10,6 +10,9 @@
     pre: null,
     participantCode: null,
     top: [],
+    ranked: [],
+    recommendationHistory: [],
+    refreshCount: 0,
     restCompleted: false,
     restInterval: null,
     restRemaining: 180,
@@ -241,6 +244,77 @@
     state.previewOnly = false;
   }
 
+  function snapshotRecommendations(items, trigger) {
+    return {
+      trigger,
+      captured_at: new Date().toISOString(),
+      items: items.map((item, index) => {
+        const sound = item.sound || item;
+        return {
+          rank: index + 1,
+          id: sound.id || null,
+          title: sound.title || '',
+          artist: sound.artist || '',
+          genre: sound.canonicalGenre || sound.genre || null,
+          subgenre: sound.subgenre || null,
+          energy: sound.energy ?? null,
+          mood: sound.moodTag || null,
+          goal: sound.goal || null,
+          score: Number.isFinite(item.score) ? item.score : null,
+          score_breakdown: item.scoreBreakdown || null
+        };
+      })
+    };
+  }
+
+  function weightedAlternativeBatch(ranked, condition, history, currentItems, limit = 5) {
+    const shownIds = new Set(history.flatMap(batch => batch.items.map(item => item.id)).filter(Boolean));
+    const currentIds = new Set(currentItems.map(item => (item.sound || item).id).filter(Boolean));
+    const maxScore = ranked.length ? ranked[0].score : 0;
+    let pool = ranked.filter(item => !shownIds.has((item.sound || item).id)
+      && item.score >= maxScore - 8);
+
+    if (pool.length < limit) {
+      pool = ranked.filter(item => !shownIds.has((item.sound || item).id)
+        && item.score >= maxScore - 18);
+    }
+    if (pool.length < limit) {
+      // If the participant has already seen almost the whole eligible pool,
+      // allow older tracks to return but never repeat a track in the current batch.
+      pool = ranked.filter(item => !currentIds.has((item.sound || item).id));
+    }
+    if (!pool.length) pool = ranked.slice();
+
+    const chosen = [];
+    const remaining = pool.slice();
+    while (chosen.length < limit && remaining.length) {
+      const minScore = Math.min(...remaining.map(item => Number(item.score) || 0));
+      const weights = remaining.map(item => Math.max(1, (Number(item.score) || 0) - minScore + 1));
+      const total = weights.reduce((sum, weight) => sum + weight, 0);
+      let point = Math.random() * total;
+      let selectedIndex = 0;
+      for (let i = 0; i < weights.length; i++) {
+        point -= weights[i];
+        if (point <= 0) { selectedIndex = i; break; }
+      }
+      chosen.push(remaining.splice(selectedIndex, 1)[0]);
+    }
+    return chosen.sort((a, b) => b.score - a.score
+      || String((a.sound || a).id).localeCompare(String((b.sound || b).id), 'en', { numeric: true }));
+  }
+
+  function refreshRecommendations() {
+    if (!['B', 'C'].includes(state.condition) || !state.ranked.length || state.submitted) return;
+    state.top = weightedAlternativeBatch(
+      state.ranked, state.condition, state.recommendationHistory, state.top, 5
+    );
+    state.refreshCount += 1;
+    state.recommendationHistory.push(snapshotRecommendations(state.top, 'refresh'));
+    renderTop(state.top);
+    $('resultHint').textContent = `Điều kiện ${state.condition} · 5 gợi ý · Lần tạo lại ${state.refreshCount}`;
+    toast('Đã tạo một danh sách gợi ý khác. Lịch sử đã được ghi nhận.');
+  }
+
   async function createPlaylist() {
     const condition = $('researchCondition').value;
     if (!['A', 'B', 'C', 'D'].includes(condition)) {
@@ -276,6 +350,10 @@
     $('submitStatus').textContent = '';
 
     hide($('d-top5')); hide($('d-rest')); hide($('d-research'));
+    state.ranked = [];
+    state.recommendationHistory = [];
+    state.refreshCount = 0;
+    hide($('refreshPlaylist'));
     if (condition === 'D') {
       state.top = [];
       $('restTimer').textContent = '03:00';
@@ -287,9 +365,12 @@
         : `Đã cấp mã tham gia ${state.participantCode}. Hoàn thành 3 phút nghỉ yên tĩnh rồi đánh giá sau.`;
     } else {
       const ranked = window.HSRecommender.recommendByCondition(window.SOUNDS, state.user, condition);
+      state.ranked = ranked;
       state.top = ranked.slice(0, 5);
+      state.recommendationHistory.push(snapshotRecommendations(state.top, 'initial'));
       renderTop(state.top);
       $('resultHint').textContent = `Điều kiện ${condition} · ${state.top.length} gợi ý`;
+      if (condition === 'B' || condition === 'C') show($('refreshPlaylist'));
       show($('d-top5'));
       show($('d-research'));
       $('researchStatus').textContent = state.previewOnly
@@ -301,6 +382,7 @@
   }
 
   $('makePlaylist').addEventListener('click', createPlaylist);
+  $('refreshPlaylist').addEventListener('click', refreshRecommendations);
   function stopRestTimer(resetUnfinished = true) {
     if (state.restInterval) clearInterval(state.restInterval);
     state.restInterval = null;
@@ -361,6 +443,8 @@
         assigned_condition: condition,
         recommendation_method: condition === 'A' ? 'fixed_balanced_reference_set' : condition === 'B' ? 'genre_preference_only' : condition === 'C' ? 'state_goal_preference_content_matching' : 'quiet_rest',
         recommendations,
+        recommendation_history: state.recommendationHistory,
+        refresh_count: state.refreshCount,
         rest_completed: condition === 'D' ? state.restCompleted : null,
         audio_played: false,
         interaction_note: condition === 'D'
