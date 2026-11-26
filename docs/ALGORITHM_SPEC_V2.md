@@ -57,10 +57,14 @@ The database does not contain a Vocal/Instrumental field. Therefore, the `instru
 
 ## 3. Research conditions
 
-- **A — Fixed reference set:** five deterministic tracks, one from each of five broad strata (Pop, Hip-Hop, Rock, Electronic, and Classical/Ambient). The set is selected without looking at participant input and is identical for all participants against the same frozen database. Freeze the selected IDs and library version before data collection.
+- **A — Fixed reference set:** five deterministic tracks, one from each of five broad genre strata (Pop, Hip-Hop, Rock, Electronic, and Classical/Ambient). The set is selected without looking at participant input and is identical for all participants against the same frozen database. It is a genre-stratified reference set, **not a validated neutral playlist**: the selection heuristic does not establish emotional neutrality or equivalence in familiarity, popularity, tempo, energy, or other musical properties. Freeze the selected IDs and library version before data collection.
 - **B — Preference-only:** ranks by genre/subgenre preference. It does not use stress, current mood, energy, or desired goal.
 - **C — State + goal + preference:** uses the scoring formula above. The research version intentionally does not use learned user-profile boosts so one participant's feedback cannot affect another participant's recommendations.
 - **D — Quiet rest:** returns no songs; the existing app handles the quiet-rest timer.
+
+### Exposure-time protocol note
+
+In the current website, A/B/C display recommendations without enforcing a fixed viewing period, while D uses a three-minute quiet-rest timer. Exposure duration is therefore not standardized across conditions. Record this as a design limitation; do not interpret differences between conditions as clean causal effects of the recommendation method. If equal exposure is required, revise and pilot the protocol so A/B/C and D use the same pre-specified interval before collecting the main dataset.
 
 ## 4. Data quality rules
 
