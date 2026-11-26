@@ -4,6 +4,8 @@
   const $ = (id) => document.getElementById(id);
   const PROFILE_KEY = 'hs_mvp01_profile';
   const LIBRARY_KEY = 'hs_v2_personal_collection';
+  const FAVORITE_KEY = 'hs_v3_explicit_favorites';
+  const PREVIEW_ONLY = true;
   const state = {
     condition: null,
     user: null,
@@ -19,7 +21,7 @@
     restInterval: null,
     restRemaining: 120,
     submitted: false,
-    previewOnly: false
+    previewOnly: true
   };
 
   const displayGenre = {
@@ -79,13 +81,54 @@
     });
   });
 
+  const catalog = window.HSRecommender.normalizeLibrary(window.SOUNDS || []);
+  const byId = new Map(catalog.map(s => [s.id,s]));
+  const savedPrefs = safeRead(FAVORITE_KEY, null);
+  let favoriteIds = Array.isArray(savedPrefs?.ids) ? [...new Set(savedPrefs.ids.filter(id=>byId.has(id)))].slice(0,3) : [];
+  $('rememberFavorites').checked = !!savedPrefs;
+  if (savedPrefs?.genre && [...$('genre').options].some(o=>o.value===savedPrefs.genre)) $('genre').value=savedPrefs.genre;
+  function forgetFavorites() {
+    try { localStorage.removeItem(FAVORITE_KEY); } catch (_) {}
+  }
+  function persistFavorites() {
+    if (!$('rememberFavorites').checked) { forgetFavorites(); return; }
+    const ok=safeWrite(FAVORITE_KEY,{ids:favoriteIds,genre:$('genre').value});
+    if (!ok) { $('rememberFavorites').checked=false; forgetFavorites(); }
+  }
+  function drawFavorites() {
+    const selected=$('favoriteSelected'), results=$('favoriteResults');
+    selected.replaceChildren();results.replaceChildren();
+    for(const id of favoriteIds){
+      const s=byId.get(id);if(!s)continue;
+      const b=document.createElement('button');b.type='button';b.className='secondary';
+      b.textContent=s.title+' ×';b.setAttribute('aria-label','Bỏ '+s.title);
+      b.addEventListener('click',()=>{favoriteIds=favoriteIds.filter(x=>x!==id);persistFavorites();drawFavorites()});
+      selected.append(b);
+    }
+    const q=normalize($('favoriteSearch').value);
+    const matches=q?catalog.filter(s=>normalize(s.title+' '+s.artist).includes(q)).slice(0,10):[];
+    for(const s of matches){
+      const b=document.createElement('button');b.type='button';b.className='secondary';b.style.textAlign='left';
+      b.textContent=s.title+' — '+s.artist;b.disabled=favoriteIds.includes(s.id)||favoriteIds.length>=3;
+      b.addEventListener('click',()=>{if(favoriteIds.length<3&&!favoriteIds.includes(s.id)){favoriteIds.push(s.id);persistFavorites();drawFavorites()}});
+      results.append(b);
+    }
+    $('favoriteStatus').textContent=favoriteIds.length+'/3 bài đã chọn'+($('rememberFavorites').checked?' · Ghi nhớ trên trình duyệt':' · Chỉ phiên này')+(q&&!matches.length?' · Không tìm thấy bài trong thư viện':'');
+  }
+  $('favoriteSearch').addEventListener('input',drawFavorites);
+  $('rememberFavorites').addEventListener('change',()=>{persistFavorites();drawFavorites()});
+  $('genre').addEventListener('change',persistFavorites);
+  $('clearFavorites').addEventListener('click',()=>{favoriteIds=[];$('rememberFavorites').checked=false;$('favoriteSearch').value='';forgetFavorites();drawFavorites()});
+  drawFavorites();
+
   function getUser() {
     return {
       stress: Number($('stress').value),
       energy: Number($('energy').value),
       mood: $('mood').value,
       goal: $('goal').value,
-      genre: $('genre').value
+      genre: $('genre').value,
+      favoriteTracks: favoriteIds.map(id=>byId.get(id)).filter(Boolean)
     };
   }
   $('stress').addEventListener('input', (e) => $('stressOut').textContent = `${e.target.value}/10`);
@@ -234,24 +277,9 @@
   function hide(el) { el.classList.add('hidden'); }
 
   async function allocateParticipantCode() {
-    const config = window.HS_SUPABASE_CONFIG || {};
-    if (!config.url || !config.anonKey || config.url.includes('YOUR_PROJECT') || config.anonKey.includes('YOUR_PUBLISHABLE')) {
-      state.previewOnly = true;
-      state.participantCode = `PREVIEW-${Date.now().toString().slice(-6)}`;
-      $('participantCode').value = state.participantCode;
-      return;
-    }
-    const base = config.url.replace(/\/$/, '');
-    const response = await fetch(`${base}/rest/v1/rpc/next_hs_participant_code`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', apikey: config.anonKey, Authorization: `Bearer ${config.anonKey}` },
-      body: '{}'
-    });
-    if (!response.ok) throw new Error(`Không cấp được mã tham gia (HTTP ${response.status}). ${await response.text()}`);
-    const code = await response.json();
-    state.participantCode = typeof code === 'string' ? code : String(code);
+    state.previewOnly = true;
+    state.participantCode = 'PREVIEW-LOCAL';
     $('participantCode').value = state.participantCode;
-    state.previewOnly = false;
   }
 
   function snapshotRecommendations(items, trigger) {
@@ -359,7 +387,7 @@
     state.pre = { ...state.user, capturedAt: new Date().toISOString(), condition };
     stopRestTimer(false);
     state.submitted = false;
-    $('submitResearch').disabled = false;
+    $('submitResearch').disabled = true;
     state.restCompleted = false;
     state.exposureStartedAt = null;
     state.exposureCompletedAt = null;
@@ -372,7 +400,7 @@
     $('postEnergy').value = 3; $('postEnergyOut').textContent = '3/5';
     $('goalAchievement').value = '3'; $('researchSatisfaction').value = '3';
     $('researchConditionLabel').value = `${condition} — ${({ A: 'Bộ bài tham chiếu cố định', B: 'Theo thể loại yêu thích', C: 'Trạng thái + mục tiêu + sở thích', D: 'Nghỉ yên tĩnh' })[condition]}`;
-    $('submitStatus').textContent = '';
+    $('submitStatus').textContent = 'V3 preview: không gửi dữ liệu lên Supabase.';
 
     hide($('d-top5')); hide($('d-rest')); hide($('d-research'));
     state.ranked = [];
@@ -386,7 +414,7 @@
       $('startRest').disabled = false;
       show($('d-rest'));
       $('researchStatus').textContent = state.previewOnly
-        ? 'Đang ở chế độ xem trước; chưa kết nối Supabase nên không thể gửi dữ liệu nghiên cứu.'
+        ? 'V3 preview — không gửi dữ liệu nghiên cứu.'
         : `Đã cấp mã tham gia ${state.participantCode}. Hoàn thành 2 phút nghỉ yên tĩnh rồi đánh giá sau.`;
     } else {
       const ranked = window.HSRecommender.recommendByCondition(window.SOUNDS, state.user, condition);
@@ -399,7 +427,7 @@
       show($('d-top5'));
       state.exposureStartedAt = new Date().toISOString();
       $('researchStatus').textContent = state.previewOnly
-        ? 'Đang ở chế độ xem trước; cần cấu hình Supabase và mã tham gia để lưu dữ liệu.'
+        ? 'V3 preview — thử gợi ý trên 600 bài; không gửi dữ liệu nghiên cứu.'
         : `Đã cấp mã tham gia ${state.participantCode}. Bạn có thể tự nghe bài hát trên nền tảng nhạc của mình, rồi quay lại đánh giá.`;
     }
     $('d-checkin').classList.add('completed');
@@ -447,84 +475,7 @@
   });
 
   async function submitResearch() {
-    const status = $('submitStatus');
-    if (!state.pre || !state.condition) { status.textContent = 'Bạn cần hoàn thành phần check-in trước.'; return; }
-    if (state.submitted) { status.textContent = 'Phiên này đã được gửi.'; return; }
-    if (!state.restCompleted) { status.textContent = state.condition === 'D' ? 'Bạn cần hoàn thành 2 phút nghỉ yên tĩnh.' : 'Hãy chuyển đến đánh giá sau trải nghiệm.'; return; }
-    if (state.condition !== 'D' && !['listened','not_listened'].includes($('listeningReport').value)) { status.textContent = 'Hãy cho biết bạn đã tự nghe bài gợi ý hay chưa.'; return; }
-    if (!state.participantCode || state.previewOnly) { status.textContent = 'Đang ở chế độ xem trước. Chưa thể gửi dữ liệu lên Supabase.'; return; }
-    if (!$('researchConsent').checked) { status.textContent = 'Bạn cần xác nhận đồng ý tham gia trước khi gửi.'; return; }
-
-    const config = window.HS_SUPABASE_CONFIG || {};
-    const condition = state.condition;
-    const recommendations = state.top.map((item, index) => {
-      const sound = item.sound || item;
-      return {
-        rank: index + 1, id: sound.id || null, title: sound.title || '', artist: sound.artist || '',
-        genre: sound.canonicalGenre || sound.genre || null, subgenre: sound.subgenre || null,
-        bpm: sound.bpm ?? null, energy: sound.energy ?? null, mood: sound.moodTag || null,
-        goal: sound.goal || null, score: Number.isFinite(item.score) ? item.score : null,
-        confidence: sound.confidence || null, source: sound.source || null,
-        score_breakdown: item.scoreBreakdown || null
-      };
-    });
-    const payload = {
-      participant_code: state.participantCode,
-      condition,
-      pre_discover: state.pre,
-      discover_data: {
-        algorithm_version: window.HSRecommender.version || '2.0.0',
-        sound_library_version: window.SOUND_LIBRARY_VERSION || '300-original',
-        refresh_policy_version: '2.1.0',
-        exposure_protocol_version: '2.0.0',
-        exposure_duration_seconds: condition === 'D' ? 120 : null,
-        exposure_mode: condition === 'D' ? 'quiet_rest_120s' : 'self_paced_external_listening',
-        listening_self_report: condition === 'D' ? null : $('listeningReport').value,
-        listening_verified: false,
-        exposure_started_at: state.exposureStartedAt,
-        exposure_completed_at: state.exposureCompletedAt,
-        rest_duration_seconds: state.condition === 'D' ? 120 : null,
-        assigned_condition: condition,
-        recommendation_method: condition === 'A' ? 'fixed_balanced_reference_set' : condition === 'B' ? 'genre_preference_only' : condition === 'C' ? 'state_goal_preference_content_matching' : 'quiet_rest',
-        recommendations,
-        recommendation_history: state.recommendationHistory,
-        refresh_count: state.refreshCount,
-        rest_completed: condition === 'D' ? state.restCompleted : null,
-        audio_played: false,
-        interaction_note: condition === 'D'
-          ? 'Condition D: quiet rest for 2 minutes; website does not play audio.'
-          : 'Self-paced recommendations; external listening is self-reported, not verified. No embedded playback or fixed listening duration.'
-      },
-      post_discover: {
-        stress: Number($('postStress').value),
-        energy: Number($('postEnergy').value),
-        goal_achievement: Number($('goalAchievement').value),
-        satisfaction: Number($('researchSatisfaction').value),
-        submitted_at: new Date().toISOString()
-      },
-      consent_to_submit: true
-    };
-
-    const submit = $('submitResearch');
-    submit.disabled = true;
-    status.textContent = 'Đang gửi câu trả lời…';
-    try {
-      const base = config.url.replace(/\/$/, '');
-      const response = await fetch(`${base}/rest/v1/hs_discover_submissions`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', apikey: config.anonKey, Authorization: `Bearer ${config.anonKey}`, Prefer: 'return=minimal' },
-        body: JSON.stringify(payload)
-      });
-      if (!response.ok) throw new Error(`HTTP ${response.status}: ${await response.text()}`);
-      state.submitted = true;
-      status.textContent = `Gửi thành công. Mã tham gia: ${state.participantCode}. Cảm ơn bạn đã tham gia.`;
-      $('researchCondition').value = '';
-      toast('Đã gửi dữ liệu nghiên cứu.');
-    } catch (error) {
-      status.textContent = `Chưa gửi được dữ liệu: ${error.message}. Bạn có thể thử lại.`;
-    } finally {
-      submit.disabled = state.submitted;
-    }
+    $('submitStatus').textContent='Bản preview không gửi dữ liệu lên Supabase.';
   }
   $('submitResearch').addEventListener('click', submitResearch);
 
@@ -532,11 +483,12 @@
     if (!confirm('Đặt lại hồ sơ gợi ý và các tín hiệu yêu thích trên thiết bị này?')) return;
     localStorage.removeItem(PROFILE_KEY);
     localStorage.removeItem(LIBRARY_KEY);
+    favoriteIds=[];$('rememberFavorites').checked=false;$('favoriteSearch').value='';forgetFavorites();drawFavorites();
     toast('Đã đặt lại hồ sơ trên thiết bị này.');
   });
 
   const audit = window.HSRecommender && window.HSRecommender.auditData(window.SOUNDS || []);
-  $('libraryCount').textContent = audit ? `${audit.total} bài hát · V2` : 'Không tải được thư viện';
+  $('libraryCount').textContent = audit ? `${audit.total} bài hát · V3 preview` : 'Không tải được thư viện';
   if (audit && audit.warnings.length) console.warn('[HILL AND STILL] Library audit warnings:', audit.warnings);
   const progress = $('scrollProgress');
   window.addEventListener('scroll', () => {
