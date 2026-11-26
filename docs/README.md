@@ -61,7 +61,7 @@ Giữ RLS bật. Chỉ cho phép INSERT khi `consent_to_submit = true`; không c
 
 - A: bộ 5 bài tham chiếu cố định, được chọn theo các nhóm thể loại; đây không phải playlist trung tính cảm xúc đã được kiểm định.
 - B: chỉ xếp hạng theo thể loại yêu thích.
-- C: kết hợp trạng thái hiện tại, mục tiêu cảm xúc và sở thích âm nhạc.
+- C: kết hợp trạng thái hiện tại, mục tiêu cảm xúc và sở thích âm nhạc. B/C cho phép tạo lại danh sách bằng lấy mẫu có trọng số trong nhóm bài có điểm cao; số lần tạo lại và từng danh sách đã hiển thị được lưu trong payload nghiên cứu.
 - D: nghỉ yên tĩnh 3 phút, không tạo danh sách nhạc.
 
 V2 là thuật toán gợi ý theo luật (rule-based content matching), không phải mô hình machine learning đã huấn luyện. Điểm xếp hạng là chỉ số tương thích nội bộ, không phải xác suất hoặc hiệu quả trị liệu.
