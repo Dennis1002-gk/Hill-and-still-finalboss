@@ -15,7 +15,7 @@
     refreshCount: 0,
     restCompleted: false,
     restInterval: null,
-    restRemaining: 180,
+    restRemaining: 120,
     submitted: false,
     previewOnly: false
   };
@@ -270,7 +270,10 @@
   // Refresh policy V2: preserve relevance before novelty.
   function refreshEligible(ranked, condition) {
     const valid = ranked.filter(item => Number.isFinite(item.score));
-    if (condition === 'B') return valid.filter(item => item.score === 100);
+    if (condition === 'B') {
+      const best = Math.max(0, ...valid.map(item => item.score));
+      return best >= 70 ? valid.filter(item => item.score === best) : [];
+    }
     const best = Math.max(0, ...valid.map(item => item.score));
     return valid.filter(item => item.score >= Math.max(75, best - 18));
   }
@@ -344,7 +347,9 @@
     state.condition = condition;
     state.user = getUser();
     state.pre = { ...state.user, capturedAt: new Date().toISOString(), condition };
+    stopRestTimer(false);
     state.submitted = false;
+    $('submitResearch').disabled = false;
     state.restCompleted = false;
     $('researchConsent').checked = false;
     $('postStress').value = 5; $('postStressOut').textContent = '5/10';
@@ -360,13 +365,13 @@
     hide($('refreshPlaylist'));
     if (condition === 'D') {
       state.top = [];
-      $('restTimer').textContent = '03:00';
-      $('restStatus').textContent = 'Sẵn sàng bắt đầu khoảng nghỉ 3 phút.';
+      $('restTimer').textContent = '02:00';
+      $('restStatus').textContent = 'Sẵn sàng bắt đầu khoảng nghỉ 2 phút.';
       $('startRest').disabled = false;
       show($('d-rest'));
       $('researchStatus').textContent = state.previewOnly
         ? 'Đang ở chế độ xem trước; chưa kết nối Supabase nên không thể gửi dữ liệu nghiên cứu.'
-        : `Đã cấp mã tham gia ${state.participantCode}. Hoàn thành 3 phút nghỉ yên tĩnh rồi đánh giá sau.`;
+        : `Đã cấp mã tham gia ${state.participantCode}. Hoàn thành 2 phút nghỉ yên tĩnh rồi đánh giá sau.`;
     } else {
       const ranked = window.HSRecommender.recommendByCondition(window.SOUNDS, state.user, condition);
       state.ranked = ranked;
@@ -391,15 +396,15 @@
     if (state.restInterval) clearInterval(state.restInterval);
     state.restInterval = null;
     if (resetUnfinished && state.condition === 'D' && !state.restCompleted) {
-      state.restRemaining = 180;
-      $('restTimer').textContent = '03:00';
+      state.restRemaining = 120;
+      $('restTimer').textContent = '02:00';
       $('startRest').disabled = false;
       $('restStatus').textContent = 'Khoảng nghỉ đã tạm dừng khi bạn rời trang. Bắt đầu lại khi sẵn sàng.';
     }
   }
   $('startRest').addEventListener('click', () => {
     if (state.restInterval || state.restCompleted) return;
-    state.restRemaining = 180;
+    state.restRemaining = 120;
     $('startRest').disabled = true;
     $('restStatus').textContent = 'Đang nghỉ yên tĩnh. Không mở nhạc trong khoảng thời gian này.';
     state.restInterval = setInterval(() => {
@@ -410,7 +415,7 @@
       if (state.restRemaining <= 0) {
         stopRestTimer(false);
         state.restCompleted = true;
-        $('restStatus').textContent = 'Đã hoàn thành 3 phút nghỉ yên tĩnh. Bạn có thể đánh giá sau trải nghiệm.';
+        $('restStatus').textContent = 'Đã hoàn thành 2 phút nghỉ yên tĩnh. Bạn có thể đánh giá sau trải nghiệm.';
         show($('d-research'));
         $('d-research').scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
@@ -421,7 +426,7 @@
     const status = $('submitStatus');
     if (!state.pre || !state.condition) { status.textContent = 'Bạn cần hoàn thành phần check-in trước.'; return; }
     if (state.submitted) { status.textContent = 'Phiên này đã được gửi.'; return; }
-    if (state.condition === 'D' && !state.restCompleted) { status.textContent = 'Bạn cần hoàn thành 3 phút nghỉ yên tĩnh trước khi gửi.'; return; }
+    if (state.condition === 'D' && !state.restCompleted) { status.textContent = 'Bạn cần hoàn thành 2 phút nghỉ yên tĩnh trước khi gửi.'; return; }
     if (!state.participantCode || state.previewOnly) { status.textContent = 'Đang ở chế độ xem trước. Chưa thể gửi dữ liệu lên Supabase.'; return; }
     if (!$('researchConsent').checked) { status.textContent = 'Bạn cần xác nhận đồng ý tham gia trước khi gửi.'; return; }
 
@@ -444,7 +449,8 @@
       pre_discover: state.pre,
       discover_data: {
         algorithm_version: window.HSRecommender.version || '2.0.0',
-        refresh_policy_version: '2.0.0',
+        refresh_policy_version: '2.1.0',
+        rest_duration_seconds: state.condition === 'D' ? 120 : null,
         assigned_condition: condition,
         recommendation_method: condition === 'A' ? 'fixed_balanced_reference_set' : condition === 'B' ? 'genre_preference_only' : condition === 'C' ? 'state_goal_preference_content_matching' : 'quiet_rest',
         recommendations,
@@ -453,7 +459,7 @@
         rest_completed: condition === 'D' ? state.restCompleted : null,
         audio_played: false,
         interaction_note: condition === 'D'
-          ? 'Condition D: quiet rest for 3 minutes; website does not play audio.'
+          ? 'Condition D: quiet rest for 2 minutes; website does not play audio.'
           : 'Website displays ranked music metadata only; no playback is embedded and listening is not verified.'
       },
       post_discover: {

@@ -62,7 +62,7 @@ Giữ RLS bật. Chỉ cho phép INSERT khi `consent_to_submit = true`; không c
 - A: bộ 5 bài tham chiếu cố định, được chọn theo các nhóm thể loại; đây không phải playlist trung tính cảm xúc đã được kiểm định.
 - B: chỉ xếp hạng theo thể loại yêu thích.
 - C: kết hợp trạng thái hiện tại, mục tiêu cảm xúc và sở thích âm nhạc. B/C cho phép tạo lại danh sách bằng lấy mẫu có trọng số trong nhóm bài có điểm cao; số lần tạo lại và từng danh sách đã hiển thị được lưu trong payload nghiên cứu.
-- D: nghỉ yên tĩnh 3 phút, không tạo danh sách nhạc.
+- D: nghỉ yên tĩnh 2 phút, không tạo danh sách nhạc.
 
 V2 là thuật toán gợi ý theo luật (rule-based content matching), không phải mô hình machine learning đã huấn luyện. Điểm xếp hạng là chỉ số tương thích nội bộ, không phải xác suất hoặc hiệu quả trị liệu.
 
@@ -72,7 +72,7 @@ V2 là thuật toán gợi ý theo luật (rule-based content matching), không 
 - Valence được để `null` vì cả 300 giá trị ban đầu đều là `NA`; thuật toán tự bỏ qua Valence.
 - Các trường BPM, Energy, Mood, Goal và Confidence được giữ theo dữ liệu nguồn nhóm cung cấp. Nhãn `Editorial`/Confidence không tự động chứng minh các giá trị đã được xác minh độc lập.
 - Website không có trình phát nhạc. Payload gửi Supabase luôn ghi `audio_played: false`.
-- Thời lượng trải nghiệm hiện chưa đồng nhất: A/B/C không giới hạn thời gian xem danh sách, trong khi D có bộ đếm nghỉ 3 phút. Đây là yếu tố gây nhiễu khi so sánh các điều kiện; cần chuẩn hóa và thử nghiệm trước nếu muốn so sánh công bằng, hoặc nêu rõ giới hạn khi phân tích.
+- Thời lượng trải nghiệm hiện chưa đồng nhất: A/B/C không giới hạn thời gian xem danh sách, trong khi D có bộ đếm nghỉ 2 phút. Đây là yếu tố gây nhiễu khi so sánh các điều kiện; cần chuẩn hóa và thử nghiệm trước nếu muốn so sánh công bằng, hoặc nêu rõ giới hạn khi phân tích.
 - Do chưa có phiên nghe nhạc thực tế, kết quả chỉ dùng để đánh giá cách đề xuất, mức độ phù hợp và hài lòng với gợi ý; không kết luận việc nghe nhạc làm thay đổi cảm xúc.
 - Trước khi thu thập dữ liệu từ học sinh vị thành niên, nhóm cần tuân thủ quy định đồng thuận/đồng ý tham gia của nhà trường và phụ huynh/người giám hộ khi áp dụng.
 
